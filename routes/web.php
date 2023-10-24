@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KhachHangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    });
-    //Route::resource('students', StudentController::class);
+    })->name('index');
+    Route::resource('khach_hangs', KhachHangController::class);
 });
 
 Route::get('/', function () {

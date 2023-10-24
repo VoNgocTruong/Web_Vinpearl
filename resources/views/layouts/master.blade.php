@@ -67,7 +67,7 @@
                         <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">MENU</h3>
                         <ul class="mb-6 flex flex-col gap-1.5 text-white">
                             <li>
-                                <a href=""
+                                <a href="{{ route('index') }}"
                                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -89,10 +89,10 @@
                             </li>
 
                             <li>
-                                <a href=""
+                                <a href="{{ route('khach_hangs.index') }}"
                                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                       xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M9.0002 7.79065C11.0814 7.79065 12.7689 6.1594 12.7689 4.1344C12.7689 2.1094 11.0814 0.478149 9.0002 0.478149C6.91895 0.478149 5.23145 2.1094 5.23145 4.1344C5.23145 6.1594 6.91895 7.79065 9.0002 7.79065ZM9.0002 1.7719C10.3783 1.7719 11.5033 2.84065 11.5033 4.16252C11.5033 5.4844 10.3783 6.55315 9.0002 6.55315C7.62207 6.55315 6.49707 5.4844 6.49707 4.16252C6.49707 2.84065 7.62207 1.7719 9.0002 1.7719Z"
                                             fill=""></path>
@@ -325,7 +325,7 @@
                     </div>
                 </div>
             </header>
-            <div class="mx-auto w-full p-6">
+            <div class="mx-auto w-full p-4">
                 @yield('content')
             </div>
         </div>

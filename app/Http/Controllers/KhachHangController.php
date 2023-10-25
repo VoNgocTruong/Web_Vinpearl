@@ -20,7 +20,7 @@ class KhachHangController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.khach_hangs.create');
     }
 
     public function store(StoreKhachHangRequest $request)

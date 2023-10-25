@@ -56,8 +56,8 @@
 </head>
 
 <body>
-    <div class="w-screen h-screen flex">
-        <div class="w-[290px] h-full bg-[#1C2434]">
+    <div class="w-screen h-screen flex overflow-x-hidden bg-[#F1F5F9] ">
+        <div class="w-[290px] h-screen bg-[#1C2434] sticky top-0 z-999">
             <div class="flex h-[84px] items-center justify-center text-white mx-auto">
                 <div>LOGO</div>
             </div>
@@ -285,7 +285,7 @@
                 </nav>
             </div>
         </div>
-        <div class="w-full h-full bg-[#F1F5F9]">
+        <div class="w-full">
             <header class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
                 <div class="flex flex-grow items-center justify-end py-4 px-4 shadow-2">
                     <div class="relative" id="dropdown">

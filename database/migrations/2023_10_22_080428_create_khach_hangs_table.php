@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('sdt', 20);
             $table->text('diaChi')->nullable();
             $table->date('ngaySinh')->nullable();
-            $table->boolean('gioiTinh');
-            $table->string('email', 255);
+            $table->tinyInteger('gioiTinh');
+            $table->string('email', 255)->unique();
             $table->string('matKhau', 255);
-            $table->string('anh', 255)->nullable();
+            $table->string('anh', 255)->default('defaultavt.png');
             $table->timestamps();
         });
     }

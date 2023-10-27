@@ -1,11 +1,26 @@
 @extends('layouts.master')
 @section('content')
+    @include('layouts.notifySuccess')
     <div class="mb-2 flex">
         <a href="{{ route('khach_hangs.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
             Thêm
         </a>
-        <a href="" class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
-            Tìm Kiếm
+        <div class="ml-4 mr-2">
+            <form action="" method="GET" class="flex items-center space-x-4">
+                <label for="search_by" class="font-bold">Tìm kiếm theo:</label>
+                <select name="search_by" id="search_by" class="p-2 border rounded">
+                    <option value="hoTenKH" @if($column == 'hoTenKH') selected @endif>Tên</option>
+                    <option value="maKH" @if($column == 'maKH') selected @endif>Mã khách hàng</option>
+                    <option value="sdt" @if($column == 'sdt') selected @endif>Số điện thoại</option>
+                </select>
+                <input type="text" name="keywords" value="{{ $keywords }}" placeholder="Nhập từ khóa" class="p-2 border rounded">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded duration-300 ease-in-out cursor-pointer">
+                    Tìm kiếm
+                </button>
+            </form>
+        </div>
+        <a href="{{ route('khach_hangs.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+            Reset
         </a>
     </div>
     <div class="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
@@ -38,7 +53,7 @@
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <div class="flex px-2 py-1">
                                 <div>
-                                    <img src="../assets/img/team-2.jpg" class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="user1" />
+                                    <img src="/storage/images/user_avt/{{ $kh->maKH }}/{{ $kh->anh }}" class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="user1" />
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <h6 class="mb-0 leading-normal text-sm">{{ $kh->hoTenKH }}</h6>
@@ -53,15 +68,19 @@
                             <p class="mb-0 font-semibold leading-tight text-xs">{{ $kh->diaChi }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $kh->ngaySinh }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $kh->getNgaySinh }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <p class="mb-0 font-semibold leading-tight text-xs">{{ $kh->genderName }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <a href="javascript:;" class="font-semibold leading-tight text-xs text-slate-400"> Xoá </a> |
-                            <a href="javascript:;" class="font-semibold leading-tight text-xs text-slate-400"> Sửa </a> |
-                            <a href="javascript:;" class="font-semibold leading-tight text-xs text-slate-400"> Chi Tiết </a>
+                            <form class="inline-block mr-1" action="{{ route('khach_hangs.destroy', $kh->maKH) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="font-semibold leading-tight text-xs text-slate-400">Xoá</button>
+                            </form>|
+                            <a href="{{ route('khach_hangs.edit', $kh->maKH) }}" class="font-semibold leading-tight text-xs text-slate-400"> Sửa </a> |
+                            <a href="{{ route('khach_hangs.show', $kh->maKH) }}" class="font-semibold leading-tight text-xs text-slate-400"> Chi Tiết </a>
                         </td>
                     </tr>
                     @endforeach

@@ -17,17 +17,13 @@
                         transparent: 'transparent',
                         white: '#FFFFFF',
                         'black-2': '#010101',
-                        body: '#64748B',
                         bodydark: '#AEB7C0',
                         bodydark1: '#DEE4EE',
                         bodydark2: '#8A99AF',
                         primary: '#3C50E0',
                         secondary: '#80CAEE',
                         stroke: '#E2E8F0',
-                        gray: '#EFF4FB',
                         graydark: '#333A48',
-                        'gray-2': '#F7F9FC',
-                        'gray-3': '#FAFAFA',
                         whiten: '#F1F5F9',
                         whiter: '#F5F7FD',
                         boxdark: '#24303F',
@@ -330,6 +326,7 @@
             </div>
         </div>
     </div>
-<script src="{{ asset("/js/script.js") }}"></script>
+    <script src="{{ asset("/js/script.js") }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
 </body>
 </html>

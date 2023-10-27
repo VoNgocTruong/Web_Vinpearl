@@ -12,18 +12,19 @@
         <div class="rounded-sm border border-stroke bg-white shadow-default p-4">
             <div class="border-b border-stroke py-4 px-6.5">
                 <h3 class="font-semibold text-black">
-                    Thêm Khách Hàng
+                    Sửa Thông Tin Khách Hàng
                 </h3>
             </div>
-            <form action="{{ route('khach_hangs.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('khach_hangs.update', $khach_hang) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="p-6.5">
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                         <div class="w-full xl:w-1/2">
                             <label class="mb-2.5 block text-black font-bold">
                                 Họ Và Tên <span class="text-meta-1">*</span>
                             </label>
-                            <input name="hoTenKH" value="{{ old('hoTenKH') }}" type="text" placeholder="Nhập họ và tên của bạn" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                            <input name="hoTenKH" value="{{ old('hoTenKH', $khach_hang->hoTenKH) }}" type="text" placeholder="Nhập họ và tên của bạn" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                             @if($errors->has('hoTenKH'))
                                 <span class="text-red-500">{{ $errors->first('hoTenKH') }}</span>
                             @endif
@@ -33,7 +34,7 @@
                             <label class="mb-2.5 block text-black font-bold">
                                 Số Điện Thoại <span class="text-meta-1">*</span>
                             </label>
-                            <input name="sdt" value="{{ old('sdt') }}" type="text" placeholder="Nhập số điện thoại" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                            <input name="sdt" value="{{ old('sdt', $khach_hang->sdt) }}" type="text" placeholder="Nhập số điện thoại" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                             @if($errors->has('sdt'))
                                 <span class="text-red-500">{{ $errors->first('sdt') }}</span>
                             @endif
@@ -44,7 +45,7 @@
                         <label class="mb-2.5 block text-black font-bold">
                             Email <span class="text-meta-1">*</span>
                         </label>
-                        <input name="email" value="{{ old('email') }}" type="email" placeholder="Nhập email của ban" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                        <input name="email" value="{{ old('email', $khach_hang->email) }}" type="email" placeholder="Nhập email của ban" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                         @if($errors->has('email'))
                             <span class="text-red-500">{{ $errors->first('email') }}</span>
                         @endif
@@ -62,7 +63,7 @@
                                         <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                     </svg>
                                 </div>
-                                <input value="{{ old('ngaySinh') }}" datepicker datepicker-format="dd/mm/yyyy" name="ngaySinh" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select date">
+                                <input value="{{ old('ngaySinh', $khach_hang->getNgaySinh) }}" datepicker datepicker-format="dd/mm/yyyy" name="ngaySinh" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select date">
                                 @if($errors->has('ngaySinh'))
                                     <span class="text-red-500">{{ $errors->first('ngaySinh') }}</span>
                                 @endif
@@ -75,9 +76,9 @@
                             </label>
                             <div class="relative z-20 bg-transparent">
                                 <select name="gioiTinh" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary">
-                                    <option value="1" @if(old('gioiTinh') == 1) selected @endif>Nam</option>
-                                    <option value="0" @if(old('gioiTinh') == 0) selected @endif>Nữ</option>
-                                    <option value="2" @if(old('gioiTinh') == 2) selected @endif>Không muốn trả lời</option>
+                                    <option value="1" @if(old('gioiTinh', $khach_hang->gioiTinh) == 1) selected @endif>Nam</option>
+                                    <option value="0" @if(old('gioiTinh', $khach_hang->gioiTinh) == 0) selected @endif>Nữ</option>
+                                    <option value="2" @if(old('gioiTinh', $khach_hang->gioiTinh) == 2) selected @endif>Không muốn trả lời</option>
                                 </select>
                                 <span class="absolute top-1/2 right-4 z-30 -translate-y-1/2">
                             <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,21 +96,11 @@
 
                     <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                         <div class="w-full xl:w-1/2">
-                            <label class="mb-2.5 block text-black">
-                                Mật Khẩu <span class="text-meta-1">*</span>
-                            </label>
-                            <input name="matKhau" type="password" placeholder="Nhập mật khẩu" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-                            @if($errors->has('matKhau'))
-                                <span class="text-red-500">{{ $errors->first('matKhau') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="w-full xl:w-1/2">
                             <label class="mb-2.5 block text-black font-bold">
                                 Ảnh
                             </label>
                             <div>
-                                <input name="anh" type="file" class="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                                <input value="{{ old('anh', $khach_hang->anh) }}" name="anh" type="file" class="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-medium outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:py-3 file:px-5 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                                 @if($errors->has('anh'))
                                     <span class="text-red-500">{{ $errors->first('anh') }}</span>
                                 @endif
@@ -121,13 +112,13 @@
                         <label class="mb-2.5 block text-black font-bold">
                             Địa Chỉ
                         </label>
-                        <textarea name="diaChi" rows="2" placeholder="Nhập địa chỉ của bạn" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">{{ old('diaChi') }}</textarea>
+                        <textarea name="diaChi" rows="2" placeholder="Nhập địa chỉ của bạn" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">{{ old('diaChi', $khach_hang->diaChi) }}</textarea>
                         @if($errors->has('diaChi'))
                             <span class="text-red-500">{{ $errors->first('diaChi') }}</span>
                         @endif
                     </div>
                     <button class="flex w-full justify-center rounded bg-primary p-3 font-medium text-white transition duration-300 hover:bg-[#0B5ED7]">
-                        Thêm
+                        Cập Nhật
                     </button>
                 </div>
             </form>

@@ -9,7 +9,7 @@
             <form action="" method="GET" class="flex items-center space-x-4">
                 <label for="search_by" class="font-bold">Tìm kiếm theo:</label>
                 <select name="search_by" id="search_by" class="p-2 border rounded">
-                    <option value="hoTenNV" @if($column == 'hoTenNV') selected @endif>Tên</option>
+                    <option value="hoTenNV" @if($column == 'hoTenNV') selected @endif>Họ Tên</option>
                     <option value="maNV" @if($column == 'maNV') selected @endif>Mã Nhân Viên</option>
                     <option value="sdt" @if($column == 'sdt') selected @endif>Số điện thoại</option>
                 </select>
@@ -55,7 +55,7 @@
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <div class="flex px-2 py-1">
                                 <div>
-                                    <img src="{{ asset('storage/app/public/images/employee_avt/' . $nv->maNV . '/' . $nv->anh) }}" class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="user1" />
+                                    <img src="{{ asset('storage/images/employee_avt/' . $nv->maNV . '/' . $nv->anh) }}" class="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="user1" />
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <h6 class="mb-0 leading-normal text-x1">{{ $nv->hoTenNV }}</h6>

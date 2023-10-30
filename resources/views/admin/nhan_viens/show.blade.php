@@ -26,7 +26,7 @@
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         <div class="relative">
-                            <img class="w-[100px] bg-contain" src="/storage/images/user_avt/{{ $nhan_vien->maNV }}/{{ $nhan_vien->anh }}" alt="profile">
+                            <img class="w-[100px] bg-contain" src="/storage/images/employee_avt/{{ $nhan_vien->maNV }}/{{ $nhan_vien->anh }}" alt="profile">
                         </div>
                     </dd>
                 </div>

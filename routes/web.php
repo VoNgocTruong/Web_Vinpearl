@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\KhachHangController;
+use App\Http\Controllers\LoaiNhanVienController;
+use App\Http\Controllers\NhanVienController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,9 @@ Route::prefix('admin')->group(function () {
         return view('admin.index');
     })->name('index');
     Route::resource('khach_hangs', KhachHangController::class);
+    Route::resource('loai_nhan_viens', LoaiNhanVienController::class);
+    Route::resource('nhan_viens', NhanVienController::class);
+
 });
 
 Route::get('/', function () {

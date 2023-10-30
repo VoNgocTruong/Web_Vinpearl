@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,7 +31,15 @@ class LoaiNhanVien extends Model
             }
             // Format mã loại nhân viên và gán vào model
             $loai_nhan_viens->maLoaiNV = 'LNV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
-            
         });
+    }
+    protected function getLuongFormattedAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value, $attribute)
+            {
+                return number_format($attribute['luongCoBan'], 0, ',', '.') . ' VNĐ';
+            }
+        );
     }
 }

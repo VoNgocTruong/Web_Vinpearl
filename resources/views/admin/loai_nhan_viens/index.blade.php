@@ -48,7 +48,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $lnv->tenLoai }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $lnv->luongCoBan }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $lnv->getLuongFormattedAttribute }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <form class="inline-block mr-1" action="{{ route('loai_nhan_viens.destroy', $lnv->maLoaiNV) }}" method="post">

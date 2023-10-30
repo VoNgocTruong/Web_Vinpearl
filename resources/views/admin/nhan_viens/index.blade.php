@@ -70,7 +70,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->diaChi }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->ngaySinh }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->getNgaySinh }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->gioiTinh }}</p>

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\KhachHangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DichVuController;
+use App\Http\Controllers\LoaiDichVuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,9 @@ Route::prefix('admin')->group(function () {
         return view('admin.index');
     })->name('index');
     Route::resource('khach_hangs', KhachHangController::class);
+    Route::resource('loai_dich_vus', LoaiDichVuController::class);
+    Route::resource('dich_vus', DichVuController::class);
 });
-
 Route::get('/', function () {
     return view('welcome');
 });

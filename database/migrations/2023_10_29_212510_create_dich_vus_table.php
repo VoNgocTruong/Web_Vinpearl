@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('maDV', 10)->primary();
             $table->string('tenDV', 255);
             $table->text('moTa')->nullable();
-            $table->string('anh', 255);
+            $table->string('anh', 255)->default('defaultavt.png');
             $table->string('maLoaiDV', 10);
             $table->float('xepLoai')->nullable();
             $table->string('sdtDV', 20);
             $table->text('diaChiDV');
+            $table->foreign('maLoaiDV')->references('maLoaiDV')->on('loai_dich_vus');
             $table->timestamps();
         });
     }

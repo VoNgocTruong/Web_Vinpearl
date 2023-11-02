@@ -43,7 +43,9 @@ class SoCaController extends Controller
     public function create()
     {
         $nhan_viens = NhanVien::all(); 
-        return view('admin.so_cas.create', ['nhan_viens' => $nhan_viens]);
+        return view('admin.so_cas.create', [
+            'nhan_viens' => $nhan_viens
+        ]);
     }
 
     public function store(StoreSoCaRequest $request)
@@ -61,37 +63,30 @@ class SoCaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SoCa  $soCa
-     * @return \Illuminate\Http\Response
-     */
     public function edit(SoCa $soCa)
     {
-        //
+        $nhan_viens = NhanVien::all(); 
+        return view('admin.so_cas.edit', [
+            'so_ca' => $soCa,
+            'nhan_viens' => $nhan_viens,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSoCaRequest  $request
-     * @param  \App\Models\SoCa  $soCa
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateSoCaRequest $request, SoCa $soCa)
     {
-        //
+        $soCa->fill($request->validated());
+        if ($soCa->save()) {
+            return redirect()->route('so_cas.index')->with('success', 'Cập nhật thông tin số ca thành công!');
+        }
+        return redirect()->route('so_cas.index')->with('error', 'Không thể cập nhật thông tin số ca!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SoCa  $soCa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SoCa $soCa)
+    public function destroy($maCa)
     {
-        //
+        $result = SoCa::query()->where('maCa', $maCa)->delete();
+        if ($result) {
+            return redirect()->route('so_cas.index')->with('success', 'Số ca đã được xóa thành công!');
+        }
+        return redirect()->route('so_cas.index')->with('error', 'Không tìm thấy số ca của nhân viên để xoá!');
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\KhachHangController;
+use App\Http\Controllers\LoaiNhanVienController;
+use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\SoCaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\LoaiDichVuController;
@@ -20,6 +23,9 @@ Route::prefix('admin')->group(function () {
         return view('admin.index');
     })->name('index');
     Route::resource('khach_hangs', KhachHangController::class);
+    Route::resource('loai_nhan_viens', LoaiNhanVienController::class);
+    Route::resource('nhan_viens', NhanVienController::class);
+    Route::resource('so_cas', SoCaController::class);
     Route::resource('loai_dich_vus', LoaiDichVuController::class);
     Route::resource('dich_vus', DichVuController::class);
 });

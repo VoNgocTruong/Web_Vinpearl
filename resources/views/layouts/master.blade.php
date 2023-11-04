@@ -133,11 +133,11 @@
                                     <ul class="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                         <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                                href="">Xem Nhân Viên</a>
+                                                href="{{ route('nhan_viens.index') }}">Xem Nhân Viên</a>
                                         </li>
                                         <li>
                                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                                                href="">Loại Nhân Viên</a>
+                                                href="{{ route('loai_nhan_viens.index') }}">Loại Nhân Viên</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -265,7 +265,7 @@
                             </li>
 
                             <li>
-                                <a href=""
+                                <a href="{{route('so_cas.index')}}"
                                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

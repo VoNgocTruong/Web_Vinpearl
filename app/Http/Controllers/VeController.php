@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ve;
+use App\Models\LoaiDichVu;
 use App\Http\Requests\StoreVeRequest;
 use App\Http\Requests\UpdateVeRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VeController extends Controller
 {
@@ -13,7 +16,7 @@ class VeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $searchColumns = [
             'maDV' => 'like',

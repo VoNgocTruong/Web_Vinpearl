@@ -28,6 +28,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('so_cas', SoCaController::class);
     Route::resource('loai_dich_vus', LoaiDichVuController::class);
     Route::resource('dich_vus', DichVuController::class);
+    Route::resource('ves', DichVuController::class);
 });
 Route::get('/', function () {
     return view('welcome');

@@ -4,9 +4,10 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SoCaController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\LoaiDichVuController;
+use App\Http\Controllers\VeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('so_cas', SoCaController::class);
     Route::resource('loai_dich_vus', LoaiDichVuController::class);
     Route::resource('dich_vus', DichVuController::class);
-    Route::resource('ves', DichVuController::class);
+    Route::resource('ves', VeController::class);
 });
 Route::get('/', function () {
     return view('welcome');

@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ve;
-use App\Models\LoaiDichVu;
-use App\Http\Requests\StoreVeRequest;
-use App\Http\Requests\UpdateVeRequest;
+use App\Models\DichVu;
+use App\Http\Requests\Ve\StoreVeRequest;
+use App\Http\Requests\Ve\UpdateVeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class VeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $searchColumns = [
@@ -45,69 +40,53 @@ class VeController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $dich_vus = DichVu::all(); 
+        return view('admin.ves.create', [
+            'dich_vus' => $dich_vus
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreVeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreVeRequest $request)
     {
-        //
+        $data = $request->validated();
+        $result = Ve::query()->create($data);
+        if ($result) {
+            return redirect()->route('ves.index')->with('success', 'Thêm thành công!');
+        }
+        return redirect()->route('ves.index')->with('error', 'Không thêm được vé!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ve  $ve
-     * @return \Illuminate\Http\Response
-     */
     public function show(Ve $ve)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ve  $ve
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Ve $ve)
     {
-        //
+        $dich_vus = DichVu::all(); 
+        return view('admin.ves.edit', [
+            've' => $ve,
+            'dich_vus' => $dich_vus,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateVeRequest  $request
-     * @param  \App\Models\Ve  $ve
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateVeRequest $request, Ve $ve)
     {
-        //
+        $ve->fill($request->validated());
+        if ($ve->save()) {
+            return redirect()->route('ves.index')->with('success', 'Cập nhật thông tin vé thành công!');
+        }
+        return redirect()->route('ves.index')->with('error', 'Không thể cập nhật thông tin vé!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ve  $ve
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ve $ve)
+    public function destroy($maVe)
     {
-        //
+        $result = Ve::query()->where('maVe', $maVe)->delete();
+        if ($result) {
+            return redirect()->route('ves.index')->with('success', 'Vé đã được xóa thành công!');
+        }
+        return redirect()->route('ves.index')->with('error', 'Không tìm thấy vé để xoá!');
     }
 }

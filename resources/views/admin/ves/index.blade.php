@@ -33,7 +33,7 @@
                     <thead class="align-bottom">
                     <tr>
                         <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b
-                        border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Vé<th>
+                        border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Vé</th>
                         <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
                         border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Dịch Vụ</th>
                         <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
@@ -49,10 +49,13 @@
                             <p class="mb-0 ml-4 font-semibold leading-tight text-x1">{{ $ve->maVe }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->getTenDichVu->tenDV }}</p>
+                        </td>
+                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->loaiVe }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->getTenDichVu->tenDV }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->giaTien }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <form class="inline-block mr-1" action="{{ route('ves.destroy', $ve->maVe) }}" method="post">
@@ -60,8 +63,7 @@
                                 @method('DELETE')
                                 <button class="font-semibold leading-tight text-x1 text-slate-400">Xoá</button>
                             </form>|
-                            <a href="{{ route('ves.edit', $ve->maVe) }}" class="font-semibold leading-tight text-x1 text-slate-400"> Sửa </a> |
-                            <a href="{{ route('ves.show', $ve->maVe) }}" class="font-semibold leading-tight text-x1 text-slate-400"> Chi Tiết </a>
+                            <a href="{{ route('ves.edit', $ve->maVe) }}" class="font-semibold leading-tight text-x1 text-slate-400"> Sửa </a>
                         </td>
                     </tr>
                     @endforeach

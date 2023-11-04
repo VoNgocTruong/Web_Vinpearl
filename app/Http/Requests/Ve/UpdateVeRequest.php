@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Ve;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +30,6 @@ class UpdateVeRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                'regex:/^[\p{L}\s]+$/u',
                 'exists:dich_vus,maDV',
             ],
             'loaiVe' => [
@@ -51,9 +50,7 @@ class UpdateVeRequest extends FormRequest
             'required' => ':attribute bắt buộc phải điền.',
             'min' => ':attribute phải có ít nhất :min ký tự.',
             'max' => ':attribute không được vượt quá :max ký tự.',
-            'unique' => ':attribute đã được sử dụng.',
-            'loaiVe.in' => ':attribute phải thuộc một trong Nam Nữ hoặc Khác.',
-            'regex' => ':attribute có ký tự không hợp lệ.',
+            'loaiVe.in' => ':attribute phải thuộc một trong Trẻ em hoặc Người lớn.',
             'numeric' => ':attribute là chữ số.',
         ];
     }

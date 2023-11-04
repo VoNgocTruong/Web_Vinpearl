@@ -30,7 +30,7 @@ class UpdateLoaiNhanVienRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                'regex:/^[\p{L}\s]+$/u'
+                Rule::unique(LoaiNhanVien::class)->ignore(this->$loai_nhan_vien),
             ],
             'luongCoBan' => [
                 'required',
@@ -47,8 +47,8 @@ class UpdateLoaiNhanVienRequest extends FormRequest
             'required' => ':attribute bắt buộc phải điền.',
             'min' => ':attribute phải có ít nhất :min ký tự.',
             'max' => ':attribute không được vượt quá :max ký tự.',
-            'regex' => ':attribute có ký tự không hợp lệ.',
-            'numeric' => ':attribute là chữ số.'
+            'numeric' => ':attribute là chữ số.',
+            'unique' => ':attribute đã được sử dụng.',
         ];
     }
 

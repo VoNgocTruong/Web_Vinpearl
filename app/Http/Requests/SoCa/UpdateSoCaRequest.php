@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\LoaiNhanVien;
+namespace App\Http\Requests\SoCa;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLoaiNhanVienRequest extends FormRequest
+class UpdateSoCaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,16 @@ class StoreLoaiNhanVienRequest extends FormRequest
     public function rules()
     {
         return [
-            'tenLoai' => [
-                'bail',
+            'maNV' => [
                 'required',
-                'string',
-                'min:3',
-                'max:255',
-                'tenLoai' => 'unique:App\Models\LoaiNhanVien,tenLoai',
+                'exists:nhan_viens,maNV'
             ],
-            'luongCoBan' => [
+            'soCa' => [
+                'bail',
                 'required',
                 'numeric', // Kiểm tra giá trị là số
                 'min:0' // Giá trị tối thiểu phải là không âm
             ],
-            
         ];
     }
 
@@ -45,18 +41,17 @@ class StoreLoaiNhanVienRequest extends FormRequest
     {
         return [
             'required' => ':attribute bắt buộc phải điền.',
+            'numeric' => ':attribute phải là một số.',
             'min' => ':attribute phải có ít nhất :min ký tự.',
-            'max' => ':attribute không được vượt quá :max ký tự.',
-            'numeric' => ':attribute là chữ số.',
-            'unique' => ':attribute đã được sử dụng.',
+            
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'tenLoai' => 'Tên loại NV',
-            'luongCoBan' => 'Lương Cơ Bản',
+            'maNV' => 'Mã NV',
+            'soCa' => 'Số Ca',
         ];
     }
 }

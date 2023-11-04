@@ -3,6 +3,7 @@
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\SoCaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('khach_hangs', KhachHangController::class);
     Route::resource('loai_nhan_viens', LoaiNhanVienController::class);
     Route::resource('nhan_viens', NhanVienController::class);
-
+    Route::resource('so_cas', SoCaController::class);
 });
 
 Route::get('/', function () {

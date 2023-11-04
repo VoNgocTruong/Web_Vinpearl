@@ -84,7 +84,7 @@ class LoaiNhanVienController extends Controller
         return redirect()->route('loai_nhan_viens.index')->with('error', 'Không thể cập nhật thông tin khách hàng!');
     }
 
-    public function destroy(LoaiNhanVien $loaiNhanVien)
+    public function destroy($maLoaiNV)
     {
         $result = LoaiNhanVien::query()->where('maLoaiNV', $maLoaiNV)->delete();
         if ($result) {

@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HoaDonController;
+use App\Models\HoaDon;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,11 @@ Route::prefix('admin')->group(function () {
         return view('admin.index');
     })->name('index');
     Route::resource('khach_hangs', KhachHangController::class);
+    Route::resource('cthd', CthdController::class);
+    Route::resource('hoadon/show', HoaDonController::class);
 });
+
+
 
 Route::get('/', function () {
     return view('welcome');

@@ -21,6 +21,9 @@
         <a href="{{ route('loai_dich_vus.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
             Reset
         </a>
+        <a href="{{ route('loai_dich_vus.export') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+            Export <i class="fas fa-file-excel fa-lg ml-2"></i>
+        </a>
     </div>
     <div class="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div class="p-6 pb-0 mb-0 bg-white rounded-t-2xl">

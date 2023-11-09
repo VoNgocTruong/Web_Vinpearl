@@ -5,6 +5,9 @@
         <a href="{{ route('dich_vus.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
             Thêm
         </a>
+        <a href="{{ route('dich_vus.export') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+            Export <i class="fas fa-file-excel fa-lg ml-2"></i>
+        </a> 
         <div class="ml-4 mr-2">
             <form action="" method="GET" class="flex items-center space-x-4">
                 <label for="search_by" class="font-bold">Tìm kiếm theo:</label>

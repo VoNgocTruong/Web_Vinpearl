@@ -8,6 +8,8 @@ use App\Http\Requests\NhanVien\StoreNhanVienRequest;
 use App\Http\Requests\NhanVien\UpdateNhanVienRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\NhanVienExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NhanVienController extends Controller
 {
@@ -102,5 +104,10 @@ class NhanVienController extends Controller
             return redirect()->route('nhan_viens.index')->with('success', 'Khách hàng đã được xóa thành công!');
         }
         return redirect()->route('nhan_viens.index')->with('error', 'Không tìm thấy khách hàng để xoá!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new NhanVienExport(), 'nhan-viens'.'.xlsx');
     }
 }

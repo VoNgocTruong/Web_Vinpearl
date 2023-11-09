@@ -68,7 +68,7 @@ class NhanVien extends Model
         );
     }
 
-    public function getTenNhanVien()
+    public function getTenLoai()
     {
         return $this->belongsTo(LoaiNhanVien::class, 'maLoaiNV', 'maLoaiNV');
     }

@@ -7,6 +7,9 @@ use App\Models\LoaiNhanVien;
 use App\Http\Requests\LoaiNhanVien\StoreLoaiNhanVienRequest;
 use App\Http\Requests\LoaiNhanVien\UpdateLoaiNhanVienRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\LoaiNhanVienExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class LoaiNhanVienController extends Controller
 {
@@ -91,5 +94,10 @@ class LoaiNhanVienController extends Controller
             return redirect()->route('loai_nhan_viens.index')->with('success', 'Chức vụ đã được xóa thành công!');
         }
         return redirect()->route('loai_nhan_viens.index')->with('error', 'Không tìm thấy chức vụ để xoá!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new LoaiNhanVienExport(), 'loai-nhan-viens'.'.xlsx');
     }
 }

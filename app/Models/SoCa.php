@@ -33,4 +33,9 @@ class SoCa extends Model
             
         });
     }
+
+    public function getTenNV()
+    {
+        return $this->belongsTo(NhanVien::class, 'maNV', 'maNV');
+    }
 }

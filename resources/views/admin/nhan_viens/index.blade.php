@@ -19,9 +19,13 @@
                 </button>
             </form>
         </div>
-        <a href="{{ route('nhan_viens.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+        <a href="{{ route('nhan_viens.index') }}" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
             Reset
         </a>
+        <a href="{{ route('nhan_viens.export') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+            Export <i class="fas fa-file-excel fa-lg ml-2"></i>
+        </a>        
+        
     </div>
     <div class="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div class="p-6 pb-0 mb-0 bg-white rounded-t-2xl">
@@ -76,7 +80,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->gioiTinh }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->getTenNhanVien->tenLoai }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $nv->getTenLoai->tenLoai }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <form class="inline-block mr-1" action="{{ route('nhan_viens.destroy', $nv->maNV) }}" method="post">

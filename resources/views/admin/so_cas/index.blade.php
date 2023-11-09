@@ -33,7 +33,7 @@
                     <thead class="align-bottom">
                     <tr>
                         <th class="px-6 py-3 pl-2 text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Ca</th>
-                        <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã NV</th>
+                        <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Họ & Tên NV</th>
                         <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Số Ca</th>
                     </tr>
                     </thead>
@@ -44,7 +44,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $sc->maCa }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 ml-4 font-semibold leading-tight text-x1">{{ $sc->maNV }}</p>
+                            <p class="mb-0 ml-4 font-semibold leading-tight text-x1">{{ $sc->getTenNV->hoTenNV }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $sc->soCa }}</p>

@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function () {
     Route::get('nhan-viens/export', [NhanVienController::class, 'export'])->name('nhan_viens.export');
     Route::get('loai-nhan-viens/export', [LoaiNhanVienController::class, 'export'])->name('loai_nhan_viens.export');
     Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
+    Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
+    Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vuss.export');
 });
 Route::get('/', function () {
     return view('welcome');

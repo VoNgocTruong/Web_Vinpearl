@@ -8,6 +8,8 @@ use App\Http\Requests\DichVu\StoreDichVuRequest;
 use App\Http\Requests\DichVu\UpdateDichVuRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\DichVu;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DichVuController extends Controller
 {
@@ -108,5 +110,10 @@ class DichVuController extends Controller
             return redirect()->route('dich_vus.index')->with('success', 'Dịch vụ đã được xóa thành công!');
         }
         return redirect()->route('dich_vus.index')->with('error', 'Xoá dịch vụ thất bại! Mời thử lại!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new DichVu(), 'dich-vus'.'.xlsx');
     }
 }

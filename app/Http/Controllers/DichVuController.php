@@ -8,7 +8,7 @@ use App\Http\Requests\DichVu\StoreDichVuRequest;
 use App\Http\Requests\DichVu\UpdateDichVuRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Exports\DichVu;
+use App\Exports\DichVuExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DichVuController extends Controller
@@ -114,6 +114,6 @@ class DichVuController extends Controller
 
     public function export()
     {
-        return Excel::download(new DichVu(), 'dich-vus'.'.xlsx');
+        return Excel::download(new DichVuExport(), 'dich-vus'.'.xlsx');
     }
 }

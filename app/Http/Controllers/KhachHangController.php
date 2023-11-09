@@ -7,6 +7,8 @@ use App\Http\Requests\KhachHang\UpdateKhachHangRequest;
 use App\Models\KhachHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\KhachHangExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KhachHangController extends Controller
 {
@@ -98,5 +100,10 @@ class KhachHangController extends Controller
             return redirect()->route('khach_hangs.index')->with('success', 'Khách hàng đã được xóa thành công!');
         }
         return redirect()->route('khach_hangs.index')->with('error', 'Không tìm thấy khách hàng để xoá!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new KhachHangExport(), 'khach-hangs'.'.xlsx');
     }
 }

@@ -30,6 +30,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('loai_dich_vus', LoaiDichVuController::class);
     Route::resource('dich_vus', DichVuController::class);
     Route::resource('ves', VeController::class);
+    Route::get('nhan-viens/export', [NhanVienController::class, 'export'])->name('nhan_viens.export');
+    Route::get('loai-nhan-viens/export', [LoaiNhanVienController::class, 'export'])->name('loai_nhan_viens.export');
+    Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
 });
 Route::get('/', function () {
     return view('welcome');

@@ -5,9 +5,11 @@ use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SoCaController;
 use App\Http\Controllers\DichVuController;
+use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Cthd;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
+    Route::resource('hoadon', HoaDonController::class);
+    Route::resource('cthd', CthdController::class);
     Route::resource('khach_hangs', KhachHangController::class);
     Route::resource('loai_nhan_viens', LoaiNhanVienController::class);
     Route::resource('nhan_viens', NhanVienController::class);
@@ -36,6 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('index');
+//})->name('index');
+Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');

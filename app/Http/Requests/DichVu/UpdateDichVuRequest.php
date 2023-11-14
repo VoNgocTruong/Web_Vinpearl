@@ -30,7 +30,6 @@ class UpdateDichVuRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                'regex:/^[\p{L}\s]+$/u'
             ],
             'sdtDV' => [
                 'bail',
@@ -45,7 +44,6 @@ class UpdateDichVuRequest extends FormRequest
                 'required',
                 'string',
                 'min:10',
-                'regex:/^[\p{L}0-9\s\-\.\,]+$/u'
             ],
             'moTa' => [
                 'bail',
@@ -54,12 +52,7 @@ class UpdateDichVuRequest extends FormRequest
             ],
             'maLoaiDV' => [
                 'required',
-                'exists:loai_dich_vus,maLoaiDV' // Kiểm tra xem giá trị nhập liệu có tồn tại trong bảng loai_nhan_viens hay không
-            ],
-            'xepLoai' => [
-                'bail',
-                'required',
-                'float',
+                'exists:loai_dich_vus,maLoaiDV'
             ],
             'anh' => [
                 'bail',
@@ -67,10 +60,12 @@ class UpdateDichVuRequest extends FormRequest
                 'mimes:jpg,png',
             ],
             'xepLoai' => [
-                'nullable', // Allow the field to be optional
-                'numeric', // Must be a number
-                'min:0', // For example, minimum value (adjust according to your requirements)
-                'max:10', // For example, maximum value (adjust according to your requirements)
+                'bail',
+                'required',
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:10',
             ],
         ];
     }

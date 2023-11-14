@@ -29,7 +29,8 @@ class DichVu extends Model
     {
         parent::boot();
         static::creating(function ($dich_vu) {
-            // Tạo mã dịch vụ mới dựa trên mã khách hàng cuối cùng
+            // Tạo mã dịch vụ mới dựa trên mã dịch vụ cuối cùng
+
             $lastService = DichVu::query()->orderBy('maDV', 'desc')->first();
             if ($lastService) {
                 $lastCode = $lastService->maDV;
@@ -39,19 +40,28 @@ class DichVu extends Model
             }
             // Format mã dịch vụ và gán vào model
             $dich_vu->maDV = 'DV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
+
             $serviceID = $dich_vu->maDV;
             if (request()->hasFile('anh')) {
                 $image = request()->file('anh');
-                $image->storeAs("public/images/service_avt/$serviceID", $dich_vu->anh);
+                $image->storeAs("public/images/service_pic/$serviceID", $dich_vu->anh);
             } else {
-                $sourcePath = 'public/images/service_avt/defaultavt.png';
-                $destinationDirectory = "public/images/service_avt/$serviceID";
-                $destinationPath = "$destinationDirectory/defaultavt.png";
+                $sourcePath = 'public/images/service_pic/default.png';
+                $destinationDirectory = "public/images/service_pic/$serviceID";
+                $destinationPath = "$destinationDirectory/default.png";
                 Storage::copy($sourcePath, $destinationPath);
             }
         });
+        static::updating(function ($dich_vu){
+            if (request()->hasFile('anh')) {
+                $image = request()->file('anh');
+                $dichVuID = $dich_vu['maDV'];
+                $imageName = 'picture' . '.' . $image->getClientOriginalExtension();
+                $image->storeAs("public/images/service_pic/$dichVuID", $imageName);
+                $dich_vu['anh'] = $imageName;
+            }
+        });
     }
-
     public function getTenDV(){
         return $this->belongsTo(LoaiDichVu::class, 'maLoaiDV', 'maLoaiDV');
     }

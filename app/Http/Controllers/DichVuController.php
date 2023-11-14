@@ -6,6 +6,9 @@ use App\Models\DichVu;
 use App\Models\LoaiDichVu;
 use App\Http\Requests\DichVu\StoreDichVuRequest;
 use App\Http\Requests\DichVu\UpdateDichVuRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\DichVuExport;
@@ -13,11 +16,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class DichVuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $searchColumns = [
@@ -41,14 +39,18 @@ class DichVuController extends Controller
             }
         }
         $data = $query->paginate(5);
-
         return view('admin.dich_vus.index' , [
             'dich_vus' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
         ]);
     }
-
+    public function homeIndex() {
+        $data = DichVu::query()->paginate(9);
+        return view('index', [
+            'dich_vus' => $data,
+        ]);
+    }
     public function create()
     {
         $loai_dich_vus = LoaiDichVu::all();
@@ -60,7 +62,7 @@ class DichVuController extends Controller
         $data = $request->validated();
         if ($request->hasFile('anh')) {
             $image = $request->file('anh');
-            $imageName = 'avatar' . '.' . $image->getClientOriginalExtension();
+            $imageName = 'picture' . '.' . $image->getClientOriginalExtension();
             $data['anh'] = $imageName;
         }
         $result = DichVu::query()->create($data);
@@ -79,30 +81,20 @@ class DichVuController extends Controller
 
     public function edit(DichVu $dichVu)
     {
-        $loai_dich_vus = LoaiDichVu::all(); 
+        $loai_dich_vus = LoaiDichVu::all();
         return view('admin.dich_vus.edit', [
             'dich_vu' => $dichVu,
             'loai_dich_vus' => $loai_dich_vus,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateDichVuRequest  $request
-     * @param  \App\Models\DichVu  $dichVu
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateDichVuRequest $request, DichVu $dichVu)
     {
         $dichVu->fill($request->validated());
-        
         if ($dichVu->save()) {
             return redirect()->route('dich_vus.index')->with('success', 'Cập nhật thông tin dịch vụ thành công!');
         }
         return redirect()->route('dich_vus.index')->with('error', 'Không thể cập nhật thông tin dịch vụ!');
     }
-
     public function destroy($maDV)
     {
         $result = DichVu::query()->where('maDV', $maDV)->delete();

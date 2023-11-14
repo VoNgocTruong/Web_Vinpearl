@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
@@ -40,7 +41,4 @@ Route::prefix('admin')->group(function () {
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
-//Route::get('/', function () {
-//    return view('index');
-//})->name('index');
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');

@@ -62,7 +62,7 @@
                 </div>
                 <div class="text-center">
                     <p class="font-bold text-lg mt-2">{{ $dich_vu->tenDV }}</p>
-                    <a href="#" class="mb-4 duration-300 inline-flex items-center text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 mt-2">
+                    <a href="{{ route('show', $dich_vu->maDV) }}" class="mb-4 duration-300 inline-flex items-center text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 mt-2">
                         Xem Chi Tiết
                     </a>
                 </div>

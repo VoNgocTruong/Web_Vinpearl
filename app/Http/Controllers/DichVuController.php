@@ -78,7 +78,17 @@ class DichVuController extends Controller
             'dich_vu' => $dichVu,
         ]);
     }
-
+    public function showForCustomer($id)
+    {
+        $dichVu =  DichVu::query()->find($id);
+        if ($dichVu) {
+            return view('show', [
+                'dich_vu' => $dichVu,
+            ]);
+        } else {
+            abort(404);
+        }
+    }
     public function edit(DichVu $dichVu)
     {
         $loai_dich_vus = LoaiDichVu::all();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
@@ -33,7 +34,7 @@ Route::prefix('admin')->group(function () {
     Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
 
 });
-//Route::get('/', function () {
-//    return view('index');
-//})->name('index');
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
+Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');

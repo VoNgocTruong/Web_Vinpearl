@@ -11,7 +11,15 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+<<<<<<< HEAD
+<<<<<<< HEAD
+        "mollie/mollie-api-php": "^2.62"
+=======
         "maatwebsite/excel": "^3.1"
+>>>>>>> 68fe85a7dac73d83a4c6ee1e3776156b841d5465
+=======
+        "maatwebsite/excel": "^3.1"
+>>>>>>> 68fe85a7dac73d83a4c6ee1e3776156b841d5465
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

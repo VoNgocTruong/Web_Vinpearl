@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;

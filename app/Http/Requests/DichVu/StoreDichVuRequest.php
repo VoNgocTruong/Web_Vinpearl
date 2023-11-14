@@ -30,7 +30,6 @@ class StoreDichVuRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                'regex:/^[\p{L}\s]+$/u'
             ],
             'sdtDV' => [
                 'bail',
@@ -45,11 +44,10 @@ class StoreDichVuRequest extends FormRequest
                 'required',
                 'string',
                 'min:10',
-                'regex:/^[\p{L}0-9\s\-\.\,]+$/u'
             ],
             'maLoaiDV' => [
                 'required',
-                'exists:loai_dich_vus,maLoaiDV' // Kiểm tra xem giá trị nhập liệu có tồn tại trong bảng loai_nhan_viens hay không
+                'exists:loai_dich_vus,maLoaiDV'
             ],
             'moTa' => [
                 'bail',
@@ -62,10 +60,10 @@ class StoreDichVuRequest extends FormRequest
                 'mimes:jpg,png',
             ],
             'xepLoai' => [
-                'nullable', // Allow the field to be optional
-                'numeric', // Must be a number
-                'min:0', // For example, minimum value (adjust according to your requirements)
-                'max:10', // For example, maximum value (adjust according to your requirements)
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:10',
             ],
         ];
     }

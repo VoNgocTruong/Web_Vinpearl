@@ -28,7 +28,6 @@ class KhachHangExport implements FromQuery, WithHeadings, WithColumnWidths
             'khach_hangs.updated_at',
         );
     }
-
     public function headings(): array
     {
         return [

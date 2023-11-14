@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
 
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('index');
+//})->name('index');
+Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');

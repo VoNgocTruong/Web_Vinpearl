@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('maDV', 10)->primary();
             $table->string('tenDV', 255);
             $table->text('moTa')->nullable();
-            $table->string('anh', 255)->default('defaultavt.png');
+            $table->string('anh', 255)->default('default.png');
             $table->string('maLoaiDV', 10);
             $table->float('xepLoai')->nullable();
             $table->string('sdtDV', 20);

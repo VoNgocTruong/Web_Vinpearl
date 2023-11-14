@@ -44,8 +44,8 @@
                         <label class="mb-2.5 block text-black font-bold">
                             Mô tả <span class="text-meta-1">*</span>
                         </label>
-                        <input name="moTa" value="{{ old('moTa', $dich_vu->moTa) }}" type="moTa" placeholder="Nhập mô tả" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
-                        @if($errors->has('moTa'))
+                        <textarea name="moTa" rows="3" placeholder="Nhập mô tả dịch vụ" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">{{ old('diaChiDV', $dich_vu->moTa) }}</textarea>
+                    @if($errors->has('moTa'))
                             <span class="text-red-500">{{ $errors->first('moTa') }}</span>
                         @endif
                     </div>

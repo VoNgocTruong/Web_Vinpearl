@@ -40,5 +40,9 @@ Route::prefix('admin')->group(function () {
     Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
+    Route::get('vess/export', [VeController::class, 'export'])->name('ves.export');
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
+Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');

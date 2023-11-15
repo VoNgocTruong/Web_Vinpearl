@@ -53,7 +53,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $lnv->tenLoai }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $lnv->getLuongFormattedAttribute }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1 luongCoBan">{{ $lnv->luongCoBan }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <form class="inline-block mr-1" action="{{ route('loai_nhan_viens.destroy', $lnv->maLoaiNV) }}" method="post">
@@ -74,4 +74,30 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Bắt sự kiện khi trang được tải
+            $('.luongCoBan').each(function() {
+                formatCurrency($(this));
+            });
+
+            // Hàm format số thành định dạng tiền tệ Việt Nam
+            function formatCurrency(inputElement) {
+                // Lấy giá trị từ phần tử HTML
+                let originalValue = inputElement.text().trim();
+
+                // Chuyển đổi giá trị thành số
+                let numericValue = parseFloat(originalValue.replace(/[^0-9]/g, ''));
+
+                // Kiểm tra xem giá trị có phải là một số hợp lệ không
+                if (!isNaN(numericValue)) {
+                    // Định dạng số thành tiền tệ Việt Nam
+                    let formattedValue = numericValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+                    // Hiển thị giá trị đã định dạng trong phần tử HTML
+                    inputElement.text(formattedValue);
+                }
+            }
+        });
+    </script>
 @endsection

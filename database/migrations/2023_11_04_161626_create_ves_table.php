@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('maVe', 10)->primary();
             $table->string('maDV', 10);
             $table->boolean('loaiVe');
-            $table->decimal('giaTien',  $precision = 13, $scale = 4);
+            $table->decimal('giaTien',  $precision = 13, $scale = 0);
             $table->foreign('maDV')->references('maDV')->on('dich_vus');
             $table->timestamps();
         });

@@ -10,6 +10,7 @@ use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
+use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
 
 /*

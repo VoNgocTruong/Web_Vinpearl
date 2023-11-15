@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('loai_nhan_viens', function (Blueprint $table) {
             $table->string('maLoaiNV', 10)->primary();
             $table->string('tenLoai', 255);
-            $table->decimal('luongCoBan',  $precision = 13, $scale = 4);
+            $table->decimal('luongCoBan',  $precision = 13, $scale = 0);
             $table->timestamps();
         });
     }

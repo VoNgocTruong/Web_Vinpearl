@@ -6,8 +6,10 @@ use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SoCaController;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\HoaDonController;
+use App\Http\Controllers\CthdController;
 use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Cthd;
 
@@ -40,3 +42,7 @@ Route::prefix('admin')->group(function () {
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
+Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/search', [SearchController::class, 'index'])->name('search');

@@ -65,4 +65,5 @@ class DichVu extends Model
     public function getTenDV(){
         return $this->belongsTo(LoaiDichVu::class, 'maLoaiDV', 'maLoaiDV');
     }
+
 }

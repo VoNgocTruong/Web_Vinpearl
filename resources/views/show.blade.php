@@ -91,10 +91,14 @@
                             </a>
                         </div>
                         <div class="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                            <a href="{{}}"
+                            <form method="post" action="{{ route('addToCart') }}">
+                                @csrf
+                                <input type="hidden" name="maDV" value="{{ $dich_vu->maDV }}">
+                            <button
                                 class="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100">
                                 Thêm Vào Giỏ
-                            </a>
+                            </button>
+                            </form>
                         </div>
                     </div>
                 </div>

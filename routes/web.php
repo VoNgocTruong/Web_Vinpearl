@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
@@ -40,3 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
+Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::post('/cart', [CartController::class, 'addToCart'])->name('addToCart');
+

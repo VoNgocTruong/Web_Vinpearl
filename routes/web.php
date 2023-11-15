@@ -42,6 +42,10 @@ Route::prefix('admin')->group(function () {
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
-Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
-Route::post('/cart', [CartController::class, 'addToCart'])->name('addToCart');
 
+// cart route
+Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart');
+Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
+Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
+Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');

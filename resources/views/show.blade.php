@@ -18,7 +18,7 @@
             <div class="w-full px-4 md:w-1/2 ">
                 <div class="sticky top-0 overflow-hidden ">
                     <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                        <img src="/storage/images/service_pic/{{$dich_vu->maDV}}/{{$dich_vu->anh}}" alt=""
+                        <img src="/storage/images/service_pic/{{$dich_vu[1]->maDV}}/{{$dich_vu[1]->anh}}" alt=""
                              class="object-cover w-full lg:h-full rounded-md">
                     </div>
                 </div>
@@ -27,10 +27,10 @@
                 <div class="lg:pl-20">
                     <div class="">
                         <h2 class="max-w-xl mt-2 mb-6 text-2xl font-bold md:text-4xl">
-                            {{ $dich_vu->tenDV }}</h2>
+                            {{ $dich_vu[1]->tenDV }}</h2>
                         <div class="flex items-center mb-6">
                             <ul class="flex mr-2">
-                                @for($i = 1; $i <= $dich_vu->xepLoai; $i++)
+                                @for($i = 1; $i <= $dich_vu[1]->xepLoai; $i++)
                                     <li>
                                         <a href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -47,19 +47,19 @@
                         </div>
                         <div class="h-20 overflow-hidden">
                             <p class="max-w-md mb-2 text-gray-700">
-                                {{ $dich_vu->moTa }}
+                                {{ $dich_vu[1]->moTa }}
                             </p>
                         </div>
                         <button id="showMoreButton" class="block mb-2 font-bold">Xem thêm</button>
-                        <p class="inline-block mb-8 text-4xl font-bold text-gray-700 ">
-                            <span></span>
+                        <p class="inline-block mb-4 text-4xl font-bold text-gray-700 ">
+                            <span id="displayPrice"></span>
                         </p>
                     </div>
                     <div class="flex items-center mb-2">
                         <div class="text-xl font-bold flex">
                             Số Điện Thoại Dịch Vụ:
                             <p class="text-[20px] font-medium text-gray-700 ml-2">
-                               {{ $dich_vu->sdtDV }}
+                               {{ $dich_vu[1]->sdtDV }}
                             </p>
                         </div>
                     </div>
@@ -68,19 +68,19 @@
                             Địa Chỉ Dịch Vụ:
                         </div>
                         <p class="text-[20px] font-medium text-gray-700 ml-2">
-                            {{ $dich_vu->diaChiDV }}
+                            {{ $dich_vu[1]->diaChiDV }}
                         </p>
                     </div>
+                    <form method="post" action="{{ route('addToCart') }}">
+                        @csrf
+                        <input type="hidden" name="maDV" value="{{ $dich_vu[1]->maDV }}">
                     <div class="flex items-center mb-8">
-                        <h2 class="text-xl font-bold">
-                            Loại Vé:</h2>
-                        <div class="flex flex-wrap -mx-2 -mb-2 ml-4">
-                            <button
-                                class="w-[70px] py-1 mb-2 mr-1 border border-2 w-11 hover:border-blue-400">Người Lớn
-                            </button>
-                            <button
-                                class="w-[70px] py-1 mb-2 mr-1 border border-2 w-11 hover:border-blue-400 ">Trẻ Em
-                            </button>
+                        <h2 class="text-xl font-bold">Loại Vé:</h2>
+                        <div class="ml-4">
+                            <select name="loaiVe" id="loaiVe" class="border border-blue-400 rounded px-3 py-1 focus:outline-none focus:border-blue-500">
+                                <option value="1" data-price="{{ $dich_vu[1]->giaTien }}">Người Lớn</option>
+                                <option value="0" data-price="{{ $dich_vu[0]->giaTien }}">Trẻ Em</option>
+                            </select>
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center -mx-4 ">
@@ -91,16 +91,13 @@
                             </a>
                         </div>
                         <div class="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                            <form method="post" action="{{ route('addToCart') }}">
-                                @csrf
-                                <input type="hidden" name="maDV" value="{{ $dich_vu->maDV }}">
                             <button
                                 class="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100">
                                 Thêm Vào Giỏ
                             </button>
-                            </form>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -115,6 +112,21 @@
         } else {
             div.classList.remove('h-auto');
             div.classList.add('h-20');
+        }
+    });
+    $(document).ready(function() {
+        const displayPriceElement = $('#displayPrice');
+        // Lấy giá trị mặc định khi trang được tải và format lại giá tiền
+        const defaultPrice = parseFloat($('#loaiVe option:selected').data('price'));
+        displayPriceElement.text(formatCurrency(defaultPrice));
+        // Thay đổi giá trị khi chọn tùy chọn khác
+        $('#loaiVe').change(function() {
+            const selectedPrice = parseFloat($(this).find('option:selected').data('price'));
+            displayPriceElement.text(formatCurrency(selectedPrice));
+        });
+        // Hàm format số thành định dạng tiền tệ Việt Nam
+        function formatCurrency(amount) {
+            return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         }
     });
 </script>

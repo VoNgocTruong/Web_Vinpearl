@@ -68,7 +68,13 @@
                     <span>Tổng Tiền</span>
                     <span>$600</span>
                 </div>
-                <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Thanh Toán</button>
+                <button class="mb-2 bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Thanh Toán</button>
+                <div class="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
+                    <form action="{{url('/vnpay_payment')}}" method="POST">
+                        @csrf
+                        <button type="submit" name="redirect" class="mb-2 bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Thanh Toán VNPAY</button>
+                    </form>                    
+                </div>
             </div>
         </div>
     </div>

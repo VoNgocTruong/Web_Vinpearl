@@ -46,3 +46,4 @@ Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
 Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
 Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');

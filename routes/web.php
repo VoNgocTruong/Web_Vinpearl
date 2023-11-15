@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
@@ -43,6 +44,3 @@ Route::prefix('admin')->group(function () {
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
-Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
-Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('/search', [SearchController::class, 'index'])->name('search');

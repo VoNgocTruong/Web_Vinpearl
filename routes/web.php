@@ -7,10 +7,10 @@ use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SoCaController;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\HoaDonController;
-use App\Http\Controllers\CthdController;
 use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Cthd;
 
@@ -45,6 +45,11 @@ Route::prefix('admin')->group(function () {
 });
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+// cart route
 Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
-Route::get('/cart/{maDV}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart');
+Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
+Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
+Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+//Route::post('/vnpay_payment', 'PaymentController@vnpay_payment');

@@ -12,5 +12,5 @@ class HoaDon extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'maHD';
-    protected $elements = ['maHD', 'maKH', 'maNV', 'ngayThanhToan', 'SDT', 'email'];
+    protected $fillable = ['maHD', 'maKH', 'maNV', 'ngayThanhToan', 'SDT', 'email'];
 }

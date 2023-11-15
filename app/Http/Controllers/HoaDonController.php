@@ -48,7 +48,7 @@ class HoaDonController extends Controller
     public function show(HoaDon $hoaDon)
     {
         //$table = HoaDon::where('maHD', $hoaDon)->first();
-        return view('cthd.show', [
+        return view('admin.cthd.show', [
             'maHD' => $hoaDon,
         ]);
     }

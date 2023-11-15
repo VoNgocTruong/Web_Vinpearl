@@ -12,4 +12,5 @@ class Cthd extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey  = ['maHD', 'maVe'];
+    protected $fillable = ['maHD', 'maVe', 'soLuong', 'giaTien'];
 }

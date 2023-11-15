@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\LoaiNhanVienController;
 use App\Http\Controllers\NhanVienController;
@@ -26,7 +25,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
-    Route::resource('hoadon', HoaDonController::class);
     Route::resource('cthd', CthdController::class);
     Route::resource('khach_hangs', KhachHangController::class);
     Route::resource('loai_nhan_viens', LoaiNhanVienController::class);

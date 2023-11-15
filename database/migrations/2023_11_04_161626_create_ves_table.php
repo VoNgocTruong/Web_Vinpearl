@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('ves', function (Blueprint $table) {
             $table->string('maVe', 10)->primary();
-            $table->string('maDV', 10);            
-            $table->string('loaiVe', 10);
+            $table->string('maDV', 10);
+            $table->boolean('loaiVe');
             $table->decimal('giaTien',  $precision = 13, $scale = 4);
             $table->foreign('maDV')->references('maDV')->on('dich_vus');
             $table->timestamps();

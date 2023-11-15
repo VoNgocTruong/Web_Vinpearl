@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\DichVuExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -78,9 +79,12 @@ class DichVuController extends Controller
             'dich_vu' => $dichVu,
         ]);
     }
-    public function showForCustomer($id)
+    public function showForCustomer($maDV)
     {
-        $dichVu =  DichVu::query()->find($id);
+        $dichVu = DB::table('dich_vus')
+            ->join('ves', 'dich_vus.maDV', '=', 'ves.maDV')
+            ->where('dich_vus.maDV', $maDV)
+            ->get();
         if ($dichVu) {
             return view('show', [
                 'dich_vu' => $dichVu,

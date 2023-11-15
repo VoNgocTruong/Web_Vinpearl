@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('cthd', function (Blueprint $table){
             $table->string('maHD', 10)->primary();
             $table->string('maVe', 10);
-            $table->integer('soLuong', 11);
-            $table->integer('giaTien', 11);
+            $table->float('soLuong');
+            $table->string('giaTien');
         });
     }
 

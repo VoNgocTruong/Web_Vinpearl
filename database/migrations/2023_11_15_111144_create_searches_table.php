@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hoadon', function (Blueprint $table) {
-            $table->string('maHD', 10)->primarykey;
-            $table->string('maKH', 10);
-            $table->string('maNV', 10);
-            $table->dateTime('ngayThanhToan');
-            $table->string('SDT', 20);
-            $table->string('email', 255);
+        Schema::create('searches', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hoa_dons');
+        Schema::dropIfExists('searches');
     }
 };

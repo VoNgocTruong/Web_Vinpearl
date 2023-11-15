@@ -29,6 +29,8 @@ class DichVu extends Model
     {
         parent::boot();
         static::creating(function ($dich_vu) {
+            // Tạo mã dịch vụ mới dựa trên mã dịch vụ cuối cùng
+
             $lastService = DichVu::query()->orderBy('maDV', 'desc')->first();
             if ($lastService) {
                 $lastCode = $lastService->maDV;
@@ -36,7 +38,9 @@ class DichVu extends Model
             } else {
                 $codeNumber = 1;
             }
-            $dich_vu->maDV = 'DV' . str_pad($codeNumber, 3, '0', STR_PAD_LEFT);
+            // Format mã dịch vụ và gán vào model
+            $dich_vu->maDV = 'DV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
+
             $serviceID = $dich_vu->maDV;
             if (request()->hasFile('anh')) {
                 $image = request()->file('anh');

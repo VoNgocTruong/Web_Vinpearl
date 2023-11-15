@@ -7,6 +7,8 @@ use App\Http\Requests\LoaiDichVu\StoreLoaiDichVuRequest;
 use App\Http\Requests\LoaiDichVu\UpdateLoaiDichVuRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\LoaiDichVuExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LoaiDichVuController extends Controller
 {
@@ -84,5 +86,10 @@ class LoaiDichVuController extends Controller
             return redirect()->route('loai_dich_vus.index')->with('success', 'Xóa thành công!');
         }
         return redirect()->route('loai_dich_vus.index')->with('error', 'Không xóa được loại dịch vụ!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new LoaiDichVuExport(), 'loai-dich-vus'.'.xlsx');
     }
 }

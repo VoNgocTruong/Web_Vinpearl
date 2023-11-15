@@ -11,6 +11,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\DichVuExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DichVuController extends Controller
 {
@@ -76,7 +78,17 @@ class DichVuController extends Controller
             'dich_vu' => $dichVu,
         ]);
     }
-
+    public function showForCustomer($id)
+    {
+        $dichVu =  DichVu::query()->find($id);
+        if ($dichVu) {
+            return view('show', [
+                'dich_vu' => $dichVu,
+            ]);
+        } else {
+            abort(404);
+        }
+    }
     public function edit(DichVu $dichVu)
     {
         $loai_dich_vus = LoaiDichVu::all();
@@ -100,5 +112,10 @@ class DichVuController extends Controller
             return redirect()->route('dich_vus.index')->with('success', 'Dịch vụ đã được xóa thành công!');
         }
         return redirect()->route('dich_vus.index')->with('error', 'Xoá dịch vụ thất bại! Mời thử lại!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new DichVuExport(), 'dich-vus'.'.xlsx');
     }
 }

@@ -24,6 +24,7 @@ class LoaiDichVu extends Model
     {
         parent::boot();
         static::creating(function ($loai_dich_vu) {
+            // Tạo mã khách hàng mới dựa trên mã khách hàng cuối cùng
             $lastCustomer = LoaiDichVu::query()->orderBy('maLoaiDV', 'desc')->first();
             if ($lastCustomer) {
                 $lastCode = $lastCustomer->maLoaiDV;
@@ -31,7 +32,8 @@ class LoaiDichVu extends Model
             } else {
                 $codeNumber = 1;
             }
-            $loai_dich_vu->maLoaiDV = 'LDV' . str_pad($codeNumber, 3, '0', STR_PAD_LEFT);
+            // Format mã khách hàng và gán vào model
+            $loai_dich_vu->maLoaiDV = 'LDV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
         });
     }
 }

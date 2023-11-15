@@ -21,7 +21,7 @@
                 </button>
             </form>
         </div>
-        <a href="{{ route('dich_vus.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
+        <a href="{{ route('dich_vus.index') }}" class="mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">
             Reset
         </a>
         <a href="{{ route('dich_vus.export') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-300 ease-in-out">

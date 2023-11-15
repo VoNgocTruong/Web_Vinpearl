@@ -11,7 +11,6 @@ use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Cthd;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +48,4 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart'
 Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
 Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
 Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+Route::get('/search', [SearchController::class, 'index'])->name('search');

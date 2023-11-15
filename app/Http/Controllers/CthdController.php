@@ -17,8 +17,8 @@ class CthdController extends Controller
      */
     public function index()
     {
-        $cthd = CTHD::all();
-        return view('cthd.index', ['cthd' => $cthd]);
+        $cthd = Cthd::all();
+        return view('admin.cthd.index', ['cthd' => $cthd]);
     }
 
 
@@ -54,7 +54,7 @@ class CthdController extends Controller
         $hoadon = HoaDon::where('maHD', $maHD)->first();
         $cthd = CTHD::where('maHD', $maHD)->first();
         if ($hoadon) {
-            return view('hoadon.show', ['hoadon' => $hoadon, 'cthd' => $cthd]);
+            return view('admin.hoadon.show', ['hoadon' => $hoadon, 'cthd' => $cthd]);
         } else {
             return redirect()->route('cthd.index')->with('error', 'Hóa đơn không tồn tại');
         }
@@ -70,7 +70,7 @@ class CthdController extends Controller
     public function edit($maHD)
     {   $hoadon = HoaDon::where('maHD', $maHD)->first();
         $cthd = CTHD::where('maHD', $maHD)->first();
-        return view('hoadon.edit', ['hoadon' => $hoadon, 'cthd' => $cthd]);
+        return view('admin.hoadon.edit', ['hoadon' => $hoadon, 'cthd' => $cthd]);
     }
 
     public function update(CthdUpdateCthdRequest $request, $maHD)

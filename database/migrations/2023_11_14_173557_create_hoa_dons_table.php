@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('hoadon', function (Blueprint $table) {
             $table->string('maHD', 10)->primarykey;
+            $table->string('maKH', 10);
+            $table->string('maNV', 10);
+            $table->dateTime('ngayThanhToan');
+            $table->string('SDT', 20);
+            $table->string('email', 255);
             $table->timestamps();
         });
     }

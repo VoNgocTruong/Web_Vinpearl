@@ -35,7 +35,7 @@ class StoreVeRequest extends FormRequest
             'loaiVe' => [
                 'bail',
                 'required',
-                'in:Trẻ em,Người lớn',
+                'in:0,1',
             ],
             'giaTien' => [
                 'required',

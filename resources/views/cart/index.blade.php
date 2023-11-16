@@ -93,11 +93,13 @@
                     <span>Tổng Tiền</span>
                     <span>{{ !empty($cart) ? $tongTien : '0'}} VNĐ</span>
                 </div>
-                <button class="bb-2 bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Thanh Toán</button>
-                <form action="{{ url('/vnpay_payment') }}" method="post">
-                    @csrf    
-                    <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" type="submit">Thanh toán</button>
-                </form>
+                <h2 class="font-semibold border-b pb-4">Chọn phương thức thanh toán</h2>
+                <button class=" bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" type="submit">Thanh Toán Khi Nhận Vé</button>
+                <form action="{{ url('/vnpay_payment') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="total_vnpay" value="{{$tongTien}}">
+                    <button name="redirect" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" type="submit">Thanh toán VNPAY</button>
+                </form>                
             </div>
         </div>
     </div>

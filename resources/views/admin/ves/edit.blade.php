@@ -19,7 +19,7 @@
                 @csrf
                 @method('PUT')
                 <div class="p-6.5">
-    
+
                     <div class="mb-6">
                         <label class="mb-2.5 block text-black font-bold">
                             Loại Dịch Vụ
@@ -49,8 +49,8 @@
                         </label>
                         <div class="relative z-20 bg-transparent">
                             <select name="loaiVe" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary">
-                                <option value="Trẻ em" @if(old('loaiVe') == 'Trẻ em') selected @endif>Trẻ em</option>
-                                <option value="Người lớn" @if(old('loaiVe') == 'Người lớn') selected @endif>Người lớn</option>
+                                <option value="0" @if(old('loaiVe') == '0') selected @endif>Trẻ em</option>
+                                <option value="1" @if(old('loaiVe') == '1') selected @endif>Người lớn</option>
                             </select>
                             <span class="absolute top-1/2 right-4 z-30 -translate-y-1/2">
                         <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

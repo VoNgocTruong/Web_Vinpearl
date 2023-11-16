@@ -12,7 +12,6 @@ use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Cthd;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +51,6 @@ Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name
 Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
 Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-//Route::post('/vnpay_payment', 'PaymentController@vnpay_payment');
+//Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
+Route::post('/momo_payment', [PaymentController::class, 'momo_payment']);

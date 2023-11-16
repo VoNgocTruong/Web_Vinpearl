@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\SoCaController;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\LoaiDichVuController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
 use App\Models\Cthd;
@@ -23,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('admin')->group(function () {
+
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
@@ -44,10 +48,25 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
-// cart route
-Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart');
-Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
-Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
-Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+//Check login -> true: vào, false: thoát về home
+Route::middleware('checkLogin')->group(function(){
+    Route::get('profile', [ProfileUserController::class, 'showProfile'])->name('show-profile');
+    Route::get('profile/edit', [ProfileUserController::class, 'edit'])->name('edit-profile');
+    Route::post('profile', [ProfileUserController::class, 'profile'])->name('update-profile');
+    Route::get('logout', [AuthManagerController::class, 'logout'])->name('logout');
+    // cart route
+    Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
+    Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
+    Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+});
+Route::get('register', [AuthManagerController::class, 'showRegistration'])->name('show-registration');
+Route::post('register', [AuthManagerController::class, 'register'])->name('register');
+Route::get('login', [AuthManagerController::class, 'showLogin'])->name('show-login');
+Route::post('login', [AuthManagerController::class, 'login'])->name('login');
+
+

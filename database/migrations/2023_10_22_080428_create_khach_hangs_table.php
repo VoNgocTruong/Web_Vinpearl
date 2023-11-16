@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('khach_hangs', function (Blueprint $table) {
             $table->string('maKH', 10)->primary();
             $table->string('hoTenKH', 255);
-            $table->string('sdt', 20);
+            $table->string('sdt', 20)->nullable();
             $table->text('diaChi')->nullable();
             $table->date('ngaySinh')->nullable();
-            $table->tinyInteger('gioiTinh');
+            $table->tinyInteger('gioiTinh')->nullable();
             $table->string('email', 255)->unique();
             $table->string('matKhau', 255);
             $table->string('anh', 255)->default('defaultavt.png');

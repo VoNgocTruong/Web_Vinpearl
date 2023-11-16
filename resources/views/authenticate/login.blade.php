@@ -4,7 +4,6 @@
 <div class="text-center flex justify-center items-center">
   <form action="{{route('login')}}" method="POST">
     @csrf
-
     <div>
       <div class='flex justify-center items-center'>
         <img class="w-32" src="https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg" alt="Vinpearl logo">

@@ -13,6 +13,7 @@ use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
 
@@ -44,12 +45,16 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('khach-hangs/export', [KhachHangController::class, 'export'])->name('khach_hangs.export');
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
+    Route::get('vess/export', [VeController::class, 'export'])->name('ves.export');
 });
 
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+//Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
+Route::post('/momo_payment', [PaymentController::class, 'momo_payment']);
 
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function(){
@@ -68,5 +73,3 @@ Route::get('register', [AuthManagerController::class, 'showRegistration'])->name
 Route::post('register', [AuthManagerController::class, 'register'])->name('register');
 Route::get('login', [AuthManagerController::class, 'showLogin'])->name('show-login');
 Route::post('login', [AuthManagerController::class, 'login'])->name('login');
-
-

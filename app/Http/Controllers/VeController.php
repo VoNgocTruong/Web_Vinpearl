@@ -8,6 +8,8 @@ use App\Http\Requests\Ve\StoreVeRequest;
 use App\Http\Requests\Ve\UpdateVeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Exports\VeExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VeController extends Controller
 {
@@ -108,5 +110,9 @@ class VeController extends Controller
             return redirect()->route('ves.index')->with('success', 'Vé đã được xóa thành công!');
         }
         return redirect()->route('ves.index')->with('error', 'Không tìm thấy vé để xoá!');
+    }
+    public function export()
+    {
+        return Excel::download(new VeExport(), 'vess'.'.xlsx');
     }
 }

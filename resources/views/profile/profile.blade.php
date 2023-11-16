@@ -1,4 +1,4 @@
-@extends('layouts.layoutLogin')
+@extends('layouts.layoutProfile')
 @section('title', 'Profile')
 @section('main')
 <!-- component -->

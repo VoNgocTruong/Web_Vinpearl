@@ -19,7 +19,7 @@ class AuthManagerController extends Controller
     // Kiểm tra email đã có trong database chưa
         if (KhachHang::where('email', $email)->exists()) {
             // Email đã tồn tại
-            return redirect()->back()->with('exist-email', 'This email is already exist.');
+            return redirect()->back()->with('exist-email', 'Email này đã tồn tài! Hãy sử dụng email khác.');
         }
         else{
             $user = new User();
@@ -29,34 +29,29 @@ class AuthManagerController extends Controller
                 'password' => 'min:8',
                 'confirm' => 'same:password',
             ], [
-                'password.min' => 'At least 8 characters password!',
-                'confirm.same' => 'Your retype-password is not correct!',
+                'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+                'confirm.same' => 'Mật khẩu xác nhận không đúng. Vui lòng thử lại',
             ]);
-            if($request->confirm != $request->password){
-                return redirect()->back()->with('confirm', 'Confirm password is not correct!');
+            $password = bcrypt($request->password);
+            $lastCustomer = KhachHang::query()->orderBy('maKH', 'desc')->first();
+            if ($lastCustomer) {
+                $lastCode = $lastCustomer->maKH;
+                $codeNumber = (int)substr($lastCode, 2) + 1;
+            } else {
+                $codeNumber = 1;
             }
-            else{
-                $password = bcrypt($request->password);
-                $lastCustomer = KhachHang::query()->orderBy('maKH', 'desc')->first();
-                if ($lastCustomer) {
-                    $lastCode = $lastCustomer->maKH;
-                    $codeNumber = (int)substr($lastCode, 2) + 1;
-                } else {
-                    $codeNumber = 1;
-                }
-                // Format mã khách hàng và gán vào model
-                $khachHang->maKH = 'KH' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
-                $khachHang->hoTenKH = $request->name;
-                $khachHang->email = $request->email;
-                $khachHang->matKhau = $password;
-                $khachHang->save();
+            // Format mã khách hàng và gán vào model
+            $khachHang->maKH = 'KH' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
+            $khachHang->hoTenKH = $request->name;
+            $khachHang->email = $request->email;
+            $khachHang->matKhau = $password;
+            $khachHang->save();
 
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->password = $password;
-                $user->save();
-                return redirect()->route('show-login')->with('register-successfully', 'Successful registration!');
-            }
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $password;
+            $user->save();
+            return redirect()->route('show-login')->with('register-successfully', 'Đăng ký thành công!');
         }
     }
 
@@ -69,10 +64,10 @@ class AuthManagerController extends Controller
     }
     function login(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->matKhau])){
-            return redirect()->route('index')->with('login-checked', 'Login successful');
+            return redirect()->route('index')->with('login-checked', 'Đăng nhập thành công!');
         }
         
-        return redirect()->route('show-login')->with('login-failed', 'Email or password are not correct!');
+        return redirect()->route('show-login')->with('login-failed', 'Email hoặc Mật khẩu không đúng!');
     }
 
     //Profile

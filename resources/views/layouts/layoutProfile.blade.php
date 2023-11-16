@@ -54,6 +54,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    @include('layouts.nav')
     @yield('main')
 </body>
 </html>

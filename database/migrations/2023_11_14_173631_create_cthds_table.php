@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cthd', function (Blueprint $table){
+        Schema::create('cthds', function (Blueprint $table){
             $table->string('maHD', 10)->primary();
             $table->string('maVe', 10);
             $table->float('soLuong');
             $table->string('giaTien');
+            $table->foreign('maHD')->references('maHD')->on('hoadons');
+            $table->foreign('maVe')->references('maVe')->on('ves');
         });
     }
 

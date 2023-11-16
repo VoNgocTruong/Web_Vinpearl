@@ -10,6 +10,7 @@ use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\LoaiDichVuController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
+use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
+
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
 // cart route

@@ -26,7 +26,7 @@
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             <div class="relative">
-                                <img class="w-[100px]" src="/storage/images/service_avt/{{ $dich_vu->maDV }}/{{ $dich_vu->anh }}" alt="service">
+                                <img class="w-[100px]" src="/storage/images/service_pic/{{ $dich_vu->maDV }}/{{ $dich_vu->anh }}" alt="service">
                             </div>
                         </dd>
                     </div>

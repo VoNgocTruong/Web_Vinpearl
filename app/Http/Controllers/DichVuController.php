@@ -30,6 +30,9 @@ class DichVuController extends Controller
         $keywords = $request->get('keywords');
         $lastKeyword = $keywords;
         $query = DichVu::query();
+        $query->leftJoin('loai_dich_vus', 'dich_vus.maLoaiDV', '=', 'loai_dich_vus.maLoaiDV')
+              ->select('dich_vus.*', 'loai_dich_vus.tenLoai');
+
         if (array_key_exists($column, $searchColumns)) {
             $operator = $searchColumns[$column];
             if (!empty($keywords)) {
@@ -39,11 +42,28 @@ class DichVuController extends Controller
                 $query->where($column, $operator, $keywords);
             }
         }
-        $data = $query->paginate(5);
+
+        //sắp xếp
+        $sortableColumns = ['maDV', 'tenDV', 'xepLoai', 'sdtDV', 'diaChiDV', 'tenLoai'];
+        $defaultColumn = 'maDV'; // Cột mặc định
+        $defaultOrder = 'asc'; // Thứ tự mặc định
+
+        $column = $request->get('sort_by', $defaultColumn);
+        $order = $request->get('order', $defaultOrder);
+
+        if (!in_array($column, $sortableColumns)) {
+            $column = $defaultColumn;
+        }
+
+        $data = $query->orderBy($column, $order)->paginate(7);
+        // Thêm tham số sắp xếp vào URL paginate
+        $data->appends(['sort_by' => $column, 'order' => $order]);
+
         return view('admin.dich_vus.index' , [
             'dich_vus' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
+            'order' => $order,
         ]);
     }
     public function homeIndex() {

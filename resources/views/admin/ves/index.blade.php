@@ -32,13 +32,13 @@
                 <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
                     <thead class="align-bottom">
                     <tr>
-                        <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b
+                        <th data-column="maVe" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b
                         border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Vé</th>
-                        <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
+                        <th data-column="tenDV" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
                         border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tên Dịch Vụ</th>
-                        <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
+                        <th data-column="loaiVe" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b
                         border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Loại vé</th>
-                        <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none
+                        <th data-column="giaTien" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none
                         text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Giá vé</th>
                     </tr>
                     </thead>
@@ -55,7 +55,7 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->loaiVe == 0 ? 'Trẻ Em' : 'Người Lớn' }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-x1">{{ $ve->giaTien }}</p>
+                            <p class="mb-0 font-semibold leading-tight text-x1 giaTien">{{ $ve->giaTien }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                             <form class="inline-block mr-1" action="{{ route('ves.destroy', $ve->maVe) }}" method="post">
@@ -75,4 +75,48 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Bắt sự kiện khi trang được tải
+            $('.giaTien').each(function() {
+                formatCurrency($(this));
+            });
+
+            // Hàm format số thành định dạng tiền tệ Việt Nam
+            function formatCurrency(inputElement) {
+                // Lấy giá trị từ phần tử HTML
+                let originalValue = inputElement.text().trim();
+
+                // Chuyển đổi giá trị thành số
+                let numericValue = parseFloat(originalValue.replace(/[^0-9]/g, ''));
+
+                // Kiểm tra xem giá trị có phải là một số hợp lệ không
+                if (!isNaN(numericValue)) {
+                    // Định dạng số thành tiền tệ Việt Nam
+                    let formattedValue = numericValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+                    // Hiển thị giá trị đã định dạng trong phần tử HTML
+                    inputElement.text(formattedValue);
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // Lấy danh sách các cột có thể sắp xếp
+        const sortableColumns = document.querySelectorAll('.sortable-column');
+
+        // Đặt sự kiện click cho mỗi cột
+        sortableColumns.forEach(column => {
+            column.addEventListener('click', function () {
+                const columnType = this.dataset.column;
+                const currentOrder = this.dataset.order;
+                const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+
+                // Chuyển đến trang index với tham số sắp xếp
+                window.location.href = `{{ route('ves.index') }}?sort_by=${columnType}&order=${newOrder}`;
+            });
+        });
+    });
+    </script>
 @endsection

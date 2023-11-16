@@ -33,13 +33,13 @@ class LoaiNhanVien extends Model
             $loai_nhan_viens->maLoaiNV = 'LNV' . str_pad($codeNumber, 6, '0', STR_PAD_LEFT);
         });
     }
-    protected function getLuongFormattedAttribute(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value, $attribute)
-            {
-                return number_format($attribute['luongCoBan'], 0, ',', '.') . ' VNĐ';
-            }
-        );
-    }
+    // protected function getLuongFormattedAttribute(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function ($value, $attribute)
+    //         {
+    //             return number_format($attribute['luongCoBan'], 0, ',', '.') . ' VNĐ';
+    //         }
+    //     );
+    // }
 }

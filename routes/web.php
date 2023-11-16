@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
@@ -8,9 +10,9 @@ use App\Http\Controllers\SoCaController;
 use App\Http\Controllers\DichVuController;
 use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\LoaiDichVuController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\VeController;
 use App\Http\Controllers\SearchController;
-use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('admin')->group(function () {
+
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('index');
@@ -41,9 +44,9 @@ Route::prefix('admin')->group(function () {
     Route::get('loai-dich-vus/export', [LoaiDichVuController::class, 'export'])->name('loai_dich_vus.export');
     Route::get('dich-vus/export', [DichVuController::class, 'export'])->name('dich_vus.export');
 });
-
 Route::get('/', [DichVuController::class, 'homeIndex'])->name('index');
 Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('show');
+
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 //Check login -> true: vào, false: thoát về home

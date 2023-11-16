@@ -32,12 +32,28 @@ class LoaiDichVuController extends Controller
                 $query->where($column, $operator, $keywords);
             }
         }
-        $data = $query->paginate(5);
+
+        //sắp xếp
+        $sortableColumns = ['maLoaiDV', 'tenLoai'];
+        $defaultColumn = 'maLoaiDV'; // Cột mặc định
+        $defaultOrder = 'asc'; // Thứ tự mặc định
+
+        $column = $request->get('sort_by', $defaultColumn);
+        $order = $request->get('order', $defaultOrder);
+
+        if (!in_array($column, $sortableColumns)) {
+            $column = $defaultColumn;
+        }
+
+        $data = $query->orderBy($column, $order)->paginate(7);
+        // Thêm tham số sắp xếp vào URL paginate
+        $data->appends(['sort_by' => $column, 'order' => $order]);
 
         return view('admin.loai_dich_vus.index' , [
             'loai_dich_vus' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
+            'order' => $order,
         ]);
     }
 

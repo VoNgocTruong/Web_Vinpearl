@@ -21,11 +21,20 @@
                         <a href="{{ route('index') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Trang Chủ</a>
                     </li>
                     <li>
-                        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Đăng Nhập & Đăng Ký</a>
-                    </li>
-                    <li>
                         <a href="{{ route('search')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Tìm Kiếm</a>
                     </li>
+                    @if (Auth::check())
+                        <li>
+                            <a href="{{route('show-profile')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Xin chào, {{auth()->user()->name}}</a>
+                        </li>
+                        <li>
+                            <a href="{{route('logout')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Đăng xuất</a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{route('show-login')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Đăng Nhập & Đăng Ký</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

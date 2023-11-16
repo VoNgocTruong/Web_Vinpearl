@@ -33,7 +33,7 @@
                             <label class="mb-2.5 block text-black font-bold">
                                 Lương cơ bản <span class="text-meta-1">*</span>
                             </label>
-                            <input name="luongCoBan" value="{{ old('luongCoBan') }}" type="text" placeholder="Nhập lương cơ bản" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
+                            <input name="luongCoBan" id="luongCoBan" value="{{ old('luongCoBan') }}" type="text" placeholder="Nhập lương cơ bản" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter">
                             @if($errors->has('luongCoBan'))
                                 <span class="text-red-500">{{ $errors->first('luongCoBan') }}</span>
                             @endif

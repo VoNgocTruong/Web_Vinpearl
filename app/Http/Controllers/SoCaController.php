@@ -31,12 +31,28 @@ class SoCaController extends Controller
                 $query->where($column, $operator, $keywords);
             }
         }
-        $data = $query->paginate(5);
+
+        //sắp xếp
+        $sortableColumns = ['maCa', 'maNV', 'soCa'];
+        $defaultColumn = 'maCa'; // Cột mặc định
+        $defaultOrder = 'asc'; // Thứ tự mặc định
+
+        $column = $request->get('sort_by', $defaultColumn);
+        $order = $request->get('order', $defaultOrder);
+
+        if (!in_array($column, $sortableColumns)) {
+            $column = $defaultColumn;
+        }
+
+        $data = $query->orderBy($column, $order)->paginate(5);
+        // Thêm tham số sắp xếp vào URL paginate
+        $data->appends(['sort_by' => $column, 'order' => $order]);
 
         return view('admin.so_cas.index' , [
             'so_cas' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
+            'order' => $order,
         ]);
     }
 

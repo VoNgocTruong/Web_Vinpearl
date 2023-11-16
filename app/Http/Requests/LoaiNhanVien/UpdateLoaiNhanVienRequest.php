@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\LoaiNhanVien;
 
+use App\Models\LoaiNhanVien;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateLoaiNhanVienRequest extends FormRequest
 {
@@ -30,7 +32,7 @@ class UpdateLoaiNhanVienRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                Rule::unique(LoaiNhanVien::class)->ignore(this->$loai_nhan_vien),
+                Rule::unique(LoaiNhanVien::class)->ignore($this->loai_nhan_vien),
             ],
             'luongCoBan' => [
                 'required',

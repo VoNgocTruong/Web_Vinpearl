@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loai_nhan_viens', function (Blueprint $table) {
-            $table->string('maLoaiNV', 10)->primary();
-            $table->string('tenLoai', 255);
-            $table->decimal('luongCoBan',  $precision = 13, $scale = 0);
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->boolean('admin')->default(0);
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loai_nhan_viens');
+        Schema::dropIfExists('users');
     }
 };

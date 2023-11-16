@@ -38,12 +38,28 @@ class LoaiNhanVienController extends Controller
                 $query->where($column, $operator, $keywords);
             }
         }
-        $data = $query->paginate(5);
+
+        //sắp xếp
+        $sortableColumns = ['maLoaiNV', 'tenLoai', 'luongCoBan'];
+        $defaultColumn = 'maLoaiNV'; // Cột mặc định
+        $defaultOrder = 'asc'; // Thứ tự mặc định
+
+        $column = $request->get('sort_by', $defaultColumn);
+        $order = $request->get('order', $defaultOrder);
+
+        if (!in_array($column, $sortableColumns)) {
+            $column = $defaultColumn;
+        }
+
+        $data = $query->orderBy($column, $order)->paginate(5);
+        // Thêm tham số sắp xếp vào URL paginate
+        $data->appends(['sort_by' => $column, 'order' => $order]);
 
         return view('admin.loai_nhan_viens.index' , [
             'loai_nhan_viens' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
+            'order' => $order,
         ]);
     }
 

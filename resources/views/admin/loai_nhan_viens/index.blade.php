@@ -37,9 +37,9 @@
                 <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
                     <thead class="align-bottom">
                     <tr>
-                        <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Loại NV</th>
-                        <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tên loại</th>
-                        <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Lương Cơ Bản</th>
+                        <th data-column="maLoaiNV" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Mã Loại NV</th>
+                        <th data-column="tenLoai" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tên loại</th>
+                        <th data-column="luongCoBan" data-order="{{ $order }}" class="sortable-column cursor-pointer px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Lương Cơ Bản</th>
 
                     </tr>
                     </thead>
@@ -98,6 +98,23 @@
                     inputElement.text(formattedValue);
                 }
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Lấy danh sách các cột có thể sắp xếp
+            const sortableColumns = document.querySelectorAll('.sortable-column');
+
+            // Đặt sự kiện click cho mỗi cột
+            sortableColumns.forEach(column => {
+                column.addEventListener('click', function () {
+                    const columnType = this.dataset.column;
+                    const currentOrder = this.dataset.order;
+                    const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+
+                    // Chuyển đến trang index với tham số sắp xếp
+                    window.location.href = `{{ route('loai_nhan_viens.index') }}?sort_by=${columnType}&order=${newOrder}`;
+                });
+            });
         });
     </script>
 @endsection

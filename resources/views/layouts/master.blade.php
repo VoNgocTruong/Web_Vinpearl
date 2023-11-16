@@ -330,6 +330,7 @@
             </div>
         </div>
     </div>
+    
     <script src="{{ asset("/js/script.js") }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
 </body>

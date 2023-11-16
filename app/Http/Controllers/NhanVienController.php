@@ -20,11 +20,15 @@ class NhanVienController extends Controller
             'hoTenNV' => 'like',
             'maNV' => 'like',
             'sdt' => 'like',
+            'gioiTinh' => 'like',
         ];
         $column = $request->get('search_by');
         $keywords = $request->get('keywords');
         $lastKeyword = $keywords;
         $query = NhanVien::query();
+        $query->leftJoin('loai_nhan_viens', 'nhan_viens.maLoaiNV', '=', 'loai_nhan_viens.maLoaiNV')
+              ->select('nhan_viens.*', 'loai_nhan_viens.tenLoai');
+
         if (array_key_exists($column, $searchColumns)) {
             $operator = $searchColumns[$column];
             if (!empty($keywords)) {
@@ -34,12 +38,28 @@ class NhanVienController extends Controller
                 $query->where($column, $operator, $keywords);
             }
         }
-        $data = $query->paginate(5);
 
-        return view('admin.nhan_viens.index' , [
+        //sắp xếp
+        $sortableColumns = ['maNV', 'hoTenNV', 'sdt', 'gioiTinh', 'ngaySinh', 'diaChi', 'tenLoai'];
+        $defaultColumn = 'maNV'; // Cột mặc định
+        $defaultOrder = 'asc'; // Thứ tự mặc định
+
+        $column = $request->get('sort_by', $defaultColumn);
+        $order = $request->get('order', $defaultOrder);
+
+        if (!in_array($column, $sortableColumns)) {
+            $column = $defaultColumn;
+        }
+
+        $data = $query->orderBy($column, $order)->paginate(5);
+        // Thêm tham số sắp xếp vào URL paginate
+        $data->appends(['sort_by' => $column, 'order' => $order]);
+
+        return view('admin.nhan_viens.index', [
             'nhan_viens' => $data,
             'keywords' => $lastKeyword,
             'column' => $column,
+            'order' => $order,
         ]);
     }
 
@@ -110,4 +130,5 @@ class NhanVienController extends Controller
     {
         return Excel::download(new NhanVienExport(), 'nhan-viens'.'.xlsx');
     }
+
 }

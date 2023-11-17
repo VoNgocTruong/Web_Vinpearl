@@ -30,9 +30,6 @@ class ProfileUserController extends Controller
                 'gender' => $gender
             ]);
         }
-        
-        
-        
     }
     public function edit(Request $request){
         $gender = 'Nam';
@@ -65,7 +62,7 @@ class ProfileUserController extends Controller
         $user = User::find(\auth()->id());
         $user->name = $request->hoTenKH;
         $user->save();
-        
+
         return redirect()->route('show-profile')->with('update-success', 'Cập nhật thành công!');
     }
 }

@@ -15,7 +15,6 @@
             <div class="w-full sm:w-1/2 xl:w-1/4 px-6 mb-6">
                 <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
                     <div class="p-3 bg-indigo-600 bg-opacity-75 rounded-full">
-                        <!-- Icon -->
                         <i class="fas fa-user text-white"></i>
                     </div>
 
@@ -30,7 +29,6 @@
             <div class="w-full sm:w-1/2 xl:w-1/4 px-6 mb-6">
                 <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
                     <div class="p-3 bg-orange-600 bg-opacity-75 rounded-full">
-                        <!-- Icon -->
                         <i class="fas fa-star text-white"></i>
                     </div>
 
@@ -45,7 +43,6 @@
             <div class="w-full sm:w-1/2 xl:w-1/4 px-6 mb-6">
                 <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
                     <div class="p-3 bg-pink-600 bg-opacity-75 rounded-full">
-                        <!-- Icon -->
                         <i class="fas fa-shopping-cart text-white"></i>
                     </div>
 
@@ -60,7 +57,6 @@
             <div class="w-full sm:w-1/2 xl:w-1/4 px-6 mb-0">
                 <div class="flex items-center px-5 py-6 bg-white rounded-md shadow-sm">
                     <div class="p-3 bg-yellow-600 bg-opacity-75 rounded-full">
-                        <!-- Icon -->
                         <i class="fas fa-ticket-alt text-white"></i>
                     </div>
 

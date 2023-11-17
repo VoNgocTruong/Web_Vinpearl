@@ -24,7 +24,6 @@ class AuthManagerController extends Controller
         else{
             $user = new User();
             $khachHang = new KhachHang();
-
             $request->validate([
                 'password' => 'min:8',
                 'confirm' => 'same:password',
@@ -46,7 +45,6 @@ class AuthManagerController extends Controller
             $khachHang->email = $request->email;
             $khachHang->matKhau = $password;
             $khachHang->save();
-
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = $password;
@@ -66,12 +64,12 @@ class AuthManagerController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->matKhau])){
             return redirect()->route('index')->with('login-checked', 'Đăng nhập thành công!');
         }
-        
+
         return redirect()->route('show-login')->with('login-failed', 'Email hoặc Mật khẩu không đúng!');
     }
 
     //Profile
-    
+
 
     //Logout
     function logout(){

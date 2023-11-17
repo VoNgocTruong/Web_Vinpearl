@@ -35,7 +35,7 @@ class KhachHang extends Model
                     1 => 'Nam',
                     0 => 'Nữ',
                     2 => 'Không muốn trả lời',
-                    default => 'Giá trị không hợp lệ',
+                    default => 'Chưa Cập Nhật',
                 };
             }
         );

@@ -52,7 +52,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    @include('layouts.nav')
+    @include('layouts.navLogin')
     @yield('main')
 </body>
 </html>

@@ -20,7 +20,6 @@
     }
 </style>
 
-
 <div class="bg-gray-100">
     <div class="container mx-auto my-5 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
@@ -33,7 +32,7 @@
                             src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
                             alt="">
                     </div>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$user->hoTenKH}}</h1>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$name}}</h1>
                     <!--
                         
                         ẢNH SIÊU TO KHỔNG LỒ HERE!
@@ -74,15 +73,11 @@
                         <div class="grid md:grid-cols-2 text-sm">
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Tên</div>
-                                <div class="px-4 py-2">{{$user->hoTenKH}}</div>
+                                <div class="px-4 py-2">{{$name}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Ngày sinh</div>
-                                <div class="px-4 py-2">@if ($user->ngaySinh)
-                                    $user->ngaySinh
-                                @else
-                                    Chưa có 
-                                @endif</div>
+                                <div class="px-4 py-2">{{$user->ngaySinh}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Giới tính</div>
@@ -90,11 +85,7 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Địa chỉ</div>
-                                <div class="px-4 py-2">@if ($user->diaChi)
-                                    $user->diaChi
-                                @else
-                                    Chưa có
-                                @endif</div>
+                                <div class="px-4 py-2">{{$user->diaChi}}</div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Email</div>
@@ -104,11 +95,7 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Điện thoại</div>
-                                <div class="px-4 py-2">@if($user->sdt)
-                                    $user->sdt
-                                @else
-                                    Chưa có
-                                @endif</div>
+                                <div class="px-4 py-2">{{$user->sdt}}</div>
                             </div>
                         </div>
                     </div>

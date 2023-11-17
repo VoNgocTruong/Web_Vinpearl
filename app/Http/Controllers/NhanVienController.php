@@ -121,9 +121,9 @@ class NhanVienController extends Controller
     {
         $result = NhanVien::query()->where('maNV', $maNV)->delete();
         if ($result) {
-            return redirect()->route('nhan_viens.index')->with('success', 'Khách hàng đã được xóa thành công!');
+            return redirect()->route('nhan_viens.index')->with('success', 'Nhân viên đã được xóa thành công!');
         }
-        return redirect()->route('nhan_viens.index')->with('error', 'Không tìm thấy khách hàng để xoá!');
+        return redirect()->route('nhan_viens.index')->with('error', 'Không tìm thấy nhân viên để xoá!');
     }
 
     public function export()

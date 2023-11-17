@@ -11,7 +11,7 @@
     <div class="w-2/4 mx-auto pt-2">
         <div class="rounded-sm border border-stroke bg-white shadow-default p-4">
             <div class="border-b border-stroke py-4 px-6.5">
-                <h3 class="font-semibold text-black">Thêm Loại Dịch Vụ Mới</h3>
+                <h3 class="font-semibold text-black" style="font-size: 24px;">Thêm Loại Dịch Vụ Mới</h3>
             </div>
             <form action="{{ route('loai_dich_vus.store') }}" method="post" enctype="multipart/form-data">
                 @csrf

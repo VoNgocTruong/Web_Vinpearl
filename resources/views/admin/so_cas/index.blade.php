@@ -50,10 +50,10 @@
                             <p class="mb-0 font-semibold leading-tight text-x1">{{ $sc->soCa }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <form class="inline-block mr-1" action="{{ route('so_cas.destroy', $sc->maCa) }}" method="post">
+                            <form class="inline-block mr-1" action="{{ route('so_cas.destroy', $sc->maCa) }}" method="post" id="deleteForm{{$sc->maCa}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="font-semibold leading-tight text-x1 text-slate-400">Xoá</button>
+                                <button type="button" class="font-semibold leading-tight text-x1 text-slate-400 delete-btn" data-shift-id="{{ $sc->maCa }}">Xoá</button>
                             </form>|
                             <a href="{{ route('so_cas.edit', $sc->maCa) }}" class="font-semibold leading-tight text-x1 text-slate-400"> Sửa </a>
 
@@ -85,6 +85,32 @@
                     window.location.href = `{{ route('so_cas.index') }}?sort_by=${columnType}&order=${newOrder}`;
                 });
             });
+            
+            //xử lý nút xóa
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const maCa = this.getAttribute('data-shift-id');
+
+                    Swal.fire({
+                        title: 'Xác nhận xóa số ca',
+                        html: `Bạn có chắc chắn muốn xóa số ca này không?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Xóa',
+                        cancelButtonText: 'Hủy',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const deleteForm = document.getElementById('deleteForm' + maCa);
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection

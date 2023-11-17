@@ -57,6 +57,8 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 //Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
 Route::get('/info', [InfoController::class, 'show'])->name('info.show');
+Route::get('/member/{id}/exercises', 'InfoController@showExercises');
+
 
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function(){
@@ -70,6 +72,7 @@ Route::middleware('checkLogin')->group(function(){
     Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
     Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
     Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+    Route::get('/cart/callback', [CartController::class, 'handlePaymentCallback'])->name('handlePaymentCallback');
 });
 Route::get('register', [AuthManagerController::class, 'showRegistration'])->name('show-registration');
 Route::post('register', [AuthManagerController::class, 'register'])->name('register');

@@ -13,4 +13,5 @@ class Cthd extends Model
     protected $keyType = 'string';
     protected $primaryKey  = ['maHD', 'maVe'];
     protected $fillable = ['maHD', 'maVe', 'soLuong', 'giaTien'];
+
 }

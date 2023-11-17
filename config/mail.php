@@ -92,7 +92,7 @@ return [
 
     'from' => [
         'address' => 'duy.nh.62cntt@ntu.edu.vn',
-        'name' => 'Hóa đơn',
+        'name' => 'Thông tin hóa đơn',
     ],
 
     /*

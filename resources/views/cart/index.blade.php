@@ -92,8 +92,7 @@
                 <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                     <span>Tổng Tiền</span>
                     <span>{{ !empty($cart) ? $tongTien : '0'}} VNĐ</span>
-                </div>
-                <h2 class="font-semibold border-b pb-4">Chọn phương thức thanh toán:</h2>
+                </div>                
                 <form action="{{ url('/vnpay_payment') }}" method="POST">
                     @csrf
                     <input type="hidden" name="total_vnpay" value="{{!empty($cart) ? $tongTien : '0'}}">

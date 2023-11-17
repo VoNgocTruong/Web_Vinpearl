@@ -82,5 +82,13 @@ class CartController extends Controller
         }
         return redirect()->route('cartIndex');
     }
-    
+    public function handlePaymentCallback(Request $request)
+    {
+        $vnp_ResponseCode = $request->input('vnp_ResponseCode');
+        if ($vnp_ResponseCode === '00') {
+            return view('cart.success');
+        } else {
+            return view('cart.failure');
+        }
+    }
 }

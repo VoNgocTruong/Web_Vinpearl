@@ -6,6 +6,10 @@ use App\Models\DichVu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Models\CTHD;
+use App\Models\Invoice;
+use Mail;
 
 class CartController extends Controller
 {
@@ -81,6 +85,30 @@ class CartController extends Controller
             session()->forget('cart');
         }
         return redirect()->route('cartIndex');
+    }
+
+    public function handlePaymentCallback(Request $request)
+    {
+        $user = Auth::user();
+        $email_user = $user->email;
+        $name_user = $user->name;
+        $vnp_ResponseCode = $request->input('vnp_ResponseCode');
+        if ($vnp_ResponseCode === '00') {
+            //Gửi email xác nhận
+            Mail::send('emails.checkout', compact('vnp_ResponseCode', 'user'), function($email) use($user){
+                $email->subject('Vinpearl Booking Tour - Xác nhận đơn hàng');
+                $email->to($email_user, $name_user);
+            });
+
+            return view('cart.success');
+        } else {
+            return view('cart.failure');
+        }
+    }
+
+    public function sendEmail(){
+        $name = 'test name for email';
+        
     }
     
 }

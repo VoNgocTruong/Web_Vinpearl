@@ -10,6 +10,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Invoice;
+use Mail;
 
 class CartController extends Controller
 {
@@ -86,6 +89,7 @@ class CartController extends Controller
         }
         return redirect()->route('cartIndex');
     }
+
     public function handlePaymentCallback(Request $request)
     {
         $vnp_ResponseCode = $request->input('vnp_ResponseCode');
@@ -101,6 +105,8 @@ class CartController extends Controller
             $newHoaDon->SDT = $khach_hang->sdt;
             $newHoaDon->email = $email;
             $newHoaDon->save();
+            
+
             foreach ($cart as $maVe => $each) {
                 $newCTHD = new Cthd();
                 $newCTHD->maVe = $maVe;
@@ -110,7 +116,18 @@ class CartController extends Controller
                 $newCTHD->giaTien = $gia;
                 $newCTHD->save();
             }
+
+            // Send email
+            $email_user = $khach_hang->email;
+            $name_user = $khach_hang->tenKH;
+            Mail::send('emails.checkout', compact('newHoaDon', 'khach_hang', 'newCTHD', 'cart'), function ($email) use ($email_user, $name_user) {
+                $email->subject('Vinpearl Booking Tour - Hóa đơn');
+                $email->to($email_user, $name_user);
+            });
+
             Session::forget('cart');
+
+
             return view('cart.success');
         } else {
             return view('cart.failure');

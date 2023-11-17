@@ -24,7 +24,7 @@
 </div>
 <div class="container mx-auto flex mt-6">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="w-[550px] h-[500px] bg-cover bg-[url('/storage/public/images/picture1.png')] shadow-md rounded-md"></div>
+        <div class="w-[550px] h-[500px] bg-cover bg-[url('/storage/images/picture1.png')] shadow-md rounded-md"></div>
         <div class="">
             <div class="border-l-4 border-blue-500 pl-6">
                 <h6 class="text-blue-500 font-bold text-[20px]">Tổng quan</h6>
@@ -58,7 +58,7 @@
         @foreach($dich_vus as $dich_vu)
             <div class="w-[450px] shadow-md rounded-lg overflow-hidden">
                 <div class="h-[250px]">
-                    <img class="h-[250px] w-full" src="/storage/public/images/service_pic/{{$dich_vu->maDV}}/{{$dich_vu->anh}}" alt="">
+                    <img class="h-[250px] w-full" src="/storage/images/service_pic/{{$dich_vu->maDV}}/{{$dich_vu->anh}}" alt="">
                 </div>
                 <div class="text-center">
                     <p class="font-bold text-lg mt-2">{{ $dich_vu->tenDV }}</p>

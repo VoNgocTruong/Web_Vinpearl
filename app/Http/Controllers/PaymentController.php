@@ -76,5 +76,4 @@ class PaymentController extends Controller
                 echo json_encode($returnData);
         }
     }
-
 }

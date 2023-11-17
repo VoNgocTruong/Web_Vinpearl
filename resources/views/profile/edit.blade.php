@@ -33,7 +33,7 @@
                             src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
                             alt="">
                     </div>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$user->hoTenKH}}</h1>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$name}}</h1>
                     <!--
                         
                         ẢNH SIÊU TO KHỔNG LỒ HERE!
@@ -76,31 +76,40 @@
                             <div class="grid md:grid-cols-2 text-sm">
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-3 font-semibold">Tên</div>
+                                    @if(Auth::User()->admin == 0)
                                     <input type="text" name="hoTenKH" required class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->hoTenKH}}">
+                                    @else
+                                    <input type="text" name="hoTenKH" required class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->name}}">
+                                    @endif
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-3 font-semibold">Ngày sinh</div>
-                                    <input type="date" name="ngaySinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->ngaySinh}}">
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-3 font-semibold">Giới tính</div>
-                                    <select class="px-3 w-full h-10 border border-gray-400 rounded-lg">
-                                        <option value="1" selected>Nam</option>
-                                        <option value="0">Nữ</option>
-                                    </select>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-3 font-semibold">Địa chỉ</div>
-                                    <input type="text" name="diaChi" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->diaChi}}">
-                                </div>
+                                @if (Auth::User()->admin == 0)
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-3 font-semibold">Ngày sinh</div>
+                                        <input type="date" name="ngaySinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->ngaySinh}}">
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-3 font-semibold">Giới tính</div>
+                                        <select class="px-3 w-full h-10 border border-gray-400 rounded-lg">
+                                            <option value="1" selected>Nam</option>
+                                            <option value="0">Nữ</option>
+                                        </select>
+                                    </div>
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-3 font-semibold">Địa chỉ</div>
+                                        <input type="text" name="diaChi" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->diaChi}}">
+                                    </div>
+                                @endif
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-3 font-semibold">Email</div>
                                     <input type="email" name="email" disabled class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->email}}">
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-3 font-semibold">Số điện thoại</div>
-                                    <input type="text" name="sdt" pattern="[0-9]{10}" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->sdt}}">
-                                </div>
+                                @if (Auth::User()->admin == 0)
+                                    <div class="grid grid-cols-2">
+                                        <div class="px-4 py-3 font-semibold">Số điện thoại</div>
+                                        <input type="text" name="sdt" pattern="[0-9]{10}" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->sdt}}">
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
                         <div class="my-4 flex justify-center items-center">

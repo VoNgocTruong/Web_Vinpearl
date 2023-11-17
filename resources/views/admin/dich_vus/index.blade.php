@@ -84,10 +84,10 @@
                             <p class="mb-0 font-semibold leading-tight text-xs">{{ $dv->getTenDV->tenLoai }}</p>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <form class="inline-block mr-1" action="{{ route('dich_vus.destroy', $dv->maDV) }}" method="post">
+                            <form class="inline-block mr-1" action="{{ route('dich_vus.destroy', $dv->maDV) }}" method="post" id="deleteForm{{$dv->maDV}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="font-semibold leading-tight text-xs text-slate-400">Xoá</button>
+                                <button type="button" class="font-semibold leading-tight text-x1 text-slate-400 delete-btn" data-service-id="{{ $dv->maDV }}">Xoá</button>
                             </form>|
                             <a href="{{ route('dich_vus.edit', $dv->maDV) }}" class="font-semibold leading-tight text-xs text-slate-400"> Sửa </a> |
                             <a href="{{ route('dich_vus.show', $dv->maDV) }}" class="font-semibold leading-tight text-xs text-slate-400"> Chi Tiết </a>
@@ -119,6 +119,32 @@
                     window.location.href = `{{ route('dich_vus.index') }}?sort_by=${columnType}&order=${newOrder}`;
                 });
             });
+
+            //xử lý nút xóa
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const maDV = this.getAttribute('data-service-id');
+
+                    Swal.fire({
+                        title: 'Xác nhận xóa dịch vụ',
+                        html: `Bạn có chắc chắn muốn xóa dịch vụ này không?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Xóa',
+                        cancelButtonText: 'Hủy',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const deleteForm = document.getElementById('deleteForm' + maDV);
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 @endsection

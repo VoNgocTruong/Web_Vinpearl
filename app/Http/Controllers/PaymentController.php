@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CTHD;
+use App\Models\Invoice;
 
 class PaymentController extends Controller
 {
@@ -10,12 +12,12 @@ class PaymentController extends Controller
         $data = $request->all();
         $code_cart = rand(00,9999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://web_vinpearl.test/cart";
-        $vnp_TmnCode = "VLQSK5G1";//Mã website tại VNPAY 
+        $vnp_Returnurl = "http://web_vinpearl.test/cart/callback";
+        $vnp_TmnCode = "VLQSK5G1";//Mã website tại VNPAY
         $vnp_HashSecret = "XNNQDLWYGBDFUYBKLOCMDOEETBXKRBFM"; //Chuỗi bí mật
 
         $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = 'Thanh Toán Vé';
+        $vnp_OrderInfo = 'Thanh Toan Ve';
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = $data["total_vnpay"] * 100;
         $vnp_Locale = 'vn';
@@ -33,7 +35,7 @@ class PaymentController extends Controller
             "vnp_OrderInfo" => $vnp_OrderInfo,
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
-            "vnp_TxnRef" => $vnp_TxnRef         
+            "vnp_TxnRef" => $vnp_TxnRef
         );
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -60,7 +62,7 @@ class PaymentController extends Controller
 
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         $returnData = array('code' => '00'
@@ -73,6 +75,5 @@ class PaymentController extends Controller
             else {
                 echo json_encode($returnData);
         }
-    } 
-        
+    }
 }

@@ -59,7 +59,7 @@
     <div class="w-screen h-screen flex overflow-x-hidden bg-[#F1F5F9] ">
         <div class="w-[290px] h-screen bg-[#1C2434] sticky top-0 z-999">
             <div class="flex h-[84px] items-center justify-center text-white mx-auto">
-                <div>LOGO</div>
+                <div>TRANG QUẢN TRỊ</div>
             </div>
             <div class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
                 <nav class="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
@@ -308,7 +308,7 @@
                         <div id="dropdown-content"
                             class="hidden rounded-sm shadow-md absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default">
                             <button>
-                                
+
                             </button>
                             <a href="{{route('logout')}}" class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                                 <svg class="fill-current" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -332,7 +332,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="{{ asset("/js/script.js") }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js"></script>
 </body>

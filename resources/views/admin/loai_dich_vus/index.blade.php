@@ -52,10 +52,10 @@
                             </div>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                            <form class="inline-block mr-1" action="{{ route('loai_dich_vus.destroy', $ldv->maLoaiDV) }}" method="post">
+                            <form class="inline-block mr-1" action="{{ route('loai_dich_vus.destroy', $ldv->maLoaiDV) }}" method="post" id="deleteForm{{$ldv->maLoaiDV}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="font-semibold leading-tight text-xs text-slate-400">Xoá</button>
+                                <button type="button" class="font-semibold leading-tight text-x1 text-slate-400 delete-btn" data-type-service-id="{{ $ldv->maLoaiDV }}">Xoá</button>
                             </form>|
                             <a href="{{ route('loai_dich_vus.edit', $ldv->maLoaiDV) }}" class="font-semibold leading-tight text-xs text-slate-400"> Sửa </a>
                         </td>
@@ -86,6 +86,32 @@
                     window.location.href = `{{ route('loai_dich_vus.index') }}?sort_by=${columnType}&order=${newOrder}`;
                 });
             });
+
+            //xử lý nút xóa
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const maLoaiDV = this.getAttribute('data-type-service-id');
+
+                    Swal.fire({
+                        title: 'Xác nhận xóa loại dịch vụ',
+                        html: `Bạn có chắc chắn muốn xóa loại dịch vụ này không?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Xóa',
+                        cancelButtonText: 'Hủy',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const deleteForm = document.getElementById('deleteForm' + maLoaiDV);
+                            deleteForm.submit();
+                        }
+                    });
+                });
+            });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection

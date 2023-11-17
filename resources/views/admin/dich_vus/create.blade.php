@@ -11,12 +11,12 @@
     <div class="w-2/4 mx-auto pt-2">
         <div class="rounded-sm border border-stroke bg-white shadow-default p-4">
             <div class="border-b border-stroke py-4 px-6.5">
-                <h3 class="font-semibold text-black">Thêm Dịch Vụ Mới</h3>
+                <h3 class="font-semibold text-black" style="font-size: 24px;">Thêm Dịch Vụ Mới</h3>
             </div>
             <form action="{{ route('dich_vus.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="p-6.5">
-                    <div class="mb-4.5">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Tên Dịch Vụ <span class="text-meta-1">*</span>
                         </label>
@@ -25,7 +25,7 @@
                             <span class="text-red-500">{{ $errors->first('tenDV') }}</span>
                         @endif
                     </div>
-                    <div class="mb-4.5">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Ảnh
                         </label>
@@ -36,7 +36,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="mb-4.5">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Số Điện Thoại Dịch Vụ <span class="text-meta-1">*</span>
                         </label>
@@ -45,7 +45,7 @@
                             <span class="text-red-500">{{ $errors->first('sdtDV') }}</span>
                         @endif
                     </div>
-                    <div class="mb-4.5">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Địa Chỉ Dịch Vụ
                         </label>
@@ -54,7 +54,7 @@
                             <span class="text-red-500">{{ $errors->first('diaChiDV') }}</span>
                         @endif
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Xếp Loại
                         </label>
@@ -63,21 +63,24 @@
                             <span class="text-red-500">{{ $errors->first('xepLoai') }}</span>
                         @endif
                     </div>
-                    <div class="relative z-20 bg-transparent">
-                            <select name="maLoaiDV" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary">
-                                @foreach($loai_dich_vus as $ldv)
-                                    <option value="{{ $ldv->maLoaiDV }}" @if(old('maLoaiDV') == $ldv->maLoaiDV) selected @endif>{{ $ldv->tenLoai }}</option>
-                                @endforeach
-                            </select>
-                            <span class="absolute top-1/2 right-4 z-30 -translate-y-1/2">
-                                <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g opacity="0.8">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
-                                </g>
-                                </svg>
-                            </span>
+                    <div class="mb-5 relative z-20 bg-transparent">
+                        <label class="mb-2.5 block text-black font-bold">
+                            Loại Dịch vụ
+                        </label>
+                        <select name="maLoaiDV" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary">
+                            @foreach($loai_dich_vus as $ldv)
+                                <option value="{{ $ldv->maLoaiDV }}" @if(old('maLoaiDV') == $ldv->maLoaiDV) selected @endif>{{ $ldv->tenLoai }}</option>
+                            @endforeach
+                        </select>
+                        <span class="absolute top-1/2 right-4 z-30 -translate-y-1/2">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g opacity="0.8">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+                            </g>
+                            </svg>
+                        </span>
                         </div>
-                    <div class="mb-4.5">
+                    <div class="mb-5">
                         <label class="mb-2.5 block text-black font-bold">
                             Mô Tả
                         </label>

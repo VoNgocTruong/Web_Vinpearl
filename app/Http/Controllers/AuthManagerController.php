@@ -62,9 +62,9 @@ class AuthManagerController extends Controller
     }
     function login(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->matKhau])){
+            $request->session()->put('email', $request->email);
             return redirect()->route('index')->with('login-checked', 'Đăng nhập thành công!');
         }
-
         return redirect()->route('show-login')->with('login-failed', 'Email hoặc Mật khẩu không đúng!');
     }
 

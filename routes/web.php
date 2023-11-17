@@ -62,7 +62,7 @@ Route::get('/info', [InfoController::class, 'show'])->name('info.show');
 Route::middleware('checkLogin')->group(function(){
     Route::get('profile', [ProfileUserController::class, 'showProfile'])->name('show-profile');
     Route::get('profile/edit', [ProfileUserController::class, 'edit'])->name('edit-profile');
-    Route::post('profile', [ProfileUserController::class, 'profile'])->name('update-profile');
+    Route::post('profile/edit', [ProfileUserController::class, 'update'])->name('update-profile');
     Route::get('logout', [AuthManagerController::class, 'logout'])->name('logout');
     // cart route
     Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');

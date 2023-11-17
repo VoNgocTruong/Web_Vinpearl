@@ -70,53 +70,48 @@
                         </span>
                         <span class="tracking-wide">Thông tin</span>
                     </div>
-                    <div class="text-gray-700">
-                        <div class="grid md:grid-cols-2 text-sm">
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Tên</div>
-                                <div class="px-4 py-2">
-                                    <input type="text" name="name" value="{{$user->hoTenKH}}">
+                    <form action="{{route('update-profile')}}" method="post">
+                        @csrf
+                        <div class="text-gray-700">
+                            <div class="grid md:grid-cols-2 text-sm">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Tên</div>
+                                    <input type="text" name="hoTenKH" required class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->hoTenKH}}">
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Ngày sinh</div>
-                                <div class="px-4 py-2">
-                                    <input type="date" name="ngaySinh" value="@if ($user->ngaySinh) $user->ngaySinh @endif">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Ngày sinh</div>
+                                    <input type="date" name="ngaySinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->ngaySinh}}">
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Giới tính</div>
-                                <div class="px-4 py-2">
-                                    <select class="">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Giới tính</div>
+                                    <select class="px-3 w-full h-10 border border-gray-400 rounded-lg">
                                         <option value="1" selected>Nam</option>
                                         <option value="0">Nữ</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Địa chỉ</div>
-                                <div class="px-4 py-2">
-                                    <input type="text" name="diaChi" value="@if ($user->diaChi) $user->diaChi @endif">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Địa chỉ</div>
+                                    <input type="text" name="diaChi" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->diaChi}}">
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Email</div>
-                                <div class="px-4 py-2">
-                                    <input type="text" name="" disabled value="{{$user->email}}">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Email</div>
+                                    <input type="email" name="email" disabled class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->email}}">
                                 </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Điện thoại</div>
-                                <div class="px-4 py-2">
-                                    <input type="text" name="" value="@if($user->sdt) $user->sdt @endif">
+                                <div class="grid grid-cols-2">
+                                    <div class="px-4 py-3 font-semibold">Số điện thoại</div>
+                                    <input type="text" name="sdt" pattern="[0-9]{10}" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->sdt}}">
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="my-4 flex justify-center items-center">
+                            <input type="submit" name="login" value="Cập nhật thông tin" class="bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
+                            <div class="mx-3"></div>
+                            <a href="{{route('show-profile')}}" class="text-center bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">Hủy</a>
+                        </div>
+                    </form>
+
                 </div>
                 <!-- End of about section -->
-
-                <div class="my-4"></div>
             </div>
         </div>
     </div>

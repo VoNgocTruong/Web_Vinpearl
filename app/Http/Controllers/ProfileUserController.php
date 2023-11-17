@@ -18,7 +18,8 @@ class ProfileUserController extends Controller
             return view('profile.profile', [
                 'user' => $user,
                 'name' => $user->name,
-                'gender' => ''
+                'gender' => '',
+                'member' => 'Admin',
             ]);
         }
         else{
@@ -27,7 +28,8 @@ class ProfileUserController extends Controller
             return view('profile.profile', [
                 'user' => $user,
                 'name' => $user->hoTenKH,
-                'gender' => $gender
+                'gender' => $gender,
+                'member' => 'Thành viên'
             ]);
         }
         
@@ -41,7 +43,8 @@ class ProfileUserController extends Controller
             return view('profile.edit', [
                 'user' => $user,
                 'name' => $user->name,
-                'gender' => ''
+                'gender' => '',
+                'member' => 'Admin',
             ]);
         }
         else{
@@ -50,7 +53,8 @@ class ProfileUserController extends Controller
             return view('profile.edit', [
                 'user' => $user,
                 'name' => $user->hoTenKH,
-                'gender' => $gender
+                'gender' => $gender,
+                'member' => 'Thành viên'
             ]);
         }
     }

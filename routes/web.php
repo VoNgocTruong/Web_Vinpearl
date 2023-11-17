@@ -16,6 +16,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PaymentController;
 use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InfoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,7 @@ Route::get('/show/{maDV}', [DichVuController::class, 'showForCustomer'])->name('
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 //Route::post('/cart/vnpay_payment', [CartController::class, 'vnpay_payment'])->name('vnpay_payment');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
-Route::post('/momo_payment', [PaymentController::class, 'momo_payment']);
+Route::get('/info', [InfoController::class, 'show'])->name('info.show');
 
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function(){

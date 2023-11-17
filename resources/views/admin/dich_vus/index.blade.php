@@ -10,7 +10,6 @@
                 <label for="search_by" class="font-bold">Tìm kiếm theo:</label>
                 <select name="search_by" id="search_by" class="p-2 border rounded">
                     <option value="tenDV" @if($column == 'tenDV') selected @endif>Tên dịch vụ</option>
-                    <option value="maDV" @if($column == 'maDV') selected @endif>Mã dịch vụ</option>
                     <option value="sdtDV" @if($column == 'sdtDV') selected @endif>Số điện thoại</option>
                     <option value="xepLoai" @if($column == 'xepLoai') selected @endif>Xếp loại</option>
                     <option value="diaChiDV" @if($column == 'diaChiDV') selected @endif>Địa chỉ</option>

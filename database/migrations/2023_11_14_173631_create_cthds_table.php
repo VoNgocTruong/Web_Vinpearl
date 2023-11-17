@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('maVe', 10);
             $table->float('soLuong');
             $table->string('giaTien');
+            $table->foreign('maVe')->references('maVe')->on('ves');
+            $table->foreign('maHD')->references('maHD')->on('hoadons');
         });
     }
 

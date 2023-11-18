@@ -6,6 +6,7 @@ use App\Models\KhachHang;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthManagerController extends Controller
 {
@@ -73,6 +74,7 @@ class AuthManagerController extends Controller
 
     //Logout
     function logout(){
+        Session::flush();
         Auth::logout();
         return redirect()->route('index');
     }

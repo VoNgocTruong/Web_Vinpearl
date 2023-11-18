@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container m-8">
-    <p class="font-bold text-xl">Thư Mục Bài Tập Của Trường</p>
+    <p class="font-bold text-xl">Thư Mục Bài Tập</p>
     @php $stt = 0 @endphp
     @foreach($directories as $directory)
             @php

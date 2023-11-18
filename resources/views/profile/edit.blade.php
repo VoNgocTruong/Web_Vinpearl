@@ -27,10 +27,10 @@
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-white p-3 border-t-4 border-green-400">
-                    <div class="image overflow-hidden">
+                <div class="bg-white p-3">
+                    <div class="image overflow-hidden  border-b-4 border-green-400">
                         <img class="h-auto w-full mx-auto"
-                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                            src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"
                             alt="">
                     </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$name}}</h1>
@@ -47,7 +47,11 @@
                             @if ($member == 'Thành viên')
                                 <span class="bg-amber-400 py-1 px-2 rounded text-white text-sm">
                                     VIP
-                                <span>                                    
+                                <span>
+                            @else
+                            <span class="bg-blue-900 py-1 px-2 rounded text-white text-sm">
+                                ADMIN
+                            <span>                                     
                             @endif
                             </span>
                         </li>
@@ -82,15 +86,15 @@
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-3 font-semibold">Tên</div>
                                     @if(Auth::User()->admin == 0)
-                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->hoTenKH}}">
+                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->hoTenKH}}">
                                     @else
-                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->name}}">
+                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->name}}">
                                     @endif
                                 </div>
                                 @if (Auth::User()->admin == 0)
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-3 font-semibold">Ngày sinh</div>
-                                        <input type="date" name="ngaySinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->ngaySinh}}">
+                                        <input type="date" name="ngaySinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->ngaySinh}}">
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-3 font-semibold">Giới tính</div>
@@ -101,17 +105,17 @@
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-3 font-semibold">Địa chỉ</div>
-                                        <input type="text" name="diaChi" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->diaChi}}">
+                                        <input type="text" name="diaChi" class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->diaChi}}">
                                     </div>
                                 @endif
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-3 font-semibold">Email</div>
-                                    <input type="email" name="email" disabled class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->email}}">
+                                    <input type="email" name="email" disabled class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->email}}">
                                 </div>
                                 @if (Auth::User()->admin == 0)
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-3 font-semibold">Số điện thoại</div>
-                                        <input type="text" name="sdt" pattern="[0-9]{10}" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->sdt}}">
+                                        <input type="text" name="sdt" pattern="[0-9]{10}" class="px-3 w-full h-10 border border-gray-400 rounded-lg" value="{{$user->sdt}}">
                                     </div>
                                 @endif
                                 
@@ -122,7 +126,7 @@
                                 Cập nhật thông tin
                             </button>
                             <div class="mx-3"></div>
-                            <button type="submit" name='cancel' data-action="cancel" class="text-center bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
+                            <button type="submit" name='cancel' class="text-center bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
                                 Hủy
                             </button>
                         </div>

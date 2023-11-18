@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cthd;
+use App\Models\DichVu;
 use App\Models\HoaDon;
 use App\Models\KhachHang;
 use App\Models\User;
+use App\Models\Ve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class ProfileUserController extends Controller
 {
@@ -27,6 +28,8 @@ class ProfileUserController extends Controller
             $user = KhachHang::where('email', $request->user()->email)->first();
             $lichSuGiaoDich = HoaDon::where('maKH', $user->maKH)->get();
             $cthd = Cthd::all();
+            $ve = Ve::all();
+            $dichVu = DichVu::all();
             if($user->gioiTinh == 0) $gender = 'Nữ';
             return view('profile.profile', [
                 'user' => $user,
@@ -34,7 +37,9 @@ class ProfileUserController extends Controller
                 'gender' => $gender,
                 'member' => 'Thành viên',
                 'lichSuGiaoDich' => $lichSuGiaoDich,
-                'cthd' => $cthd,
+                'cthds' => $cthd,
+                'ves' => $ve,
+                'dichVus' => $dichVu,
             ]);
         }
     }

@@ -32,7 +32,7 @@ include('connection.php');
 
     if (mysqli_num_rows($result) != 0) {
         while ($row = mysqli_fetch_array($result)) {
-            $imageDirectory = "../php_mysql/img/Hinh_sua/";
+            $imageDirectory = "../hinhBTTH/2/img/Hinh_sua/";
             $imageFilename = $row['Hinh'];
             $imagePath = $imageDirectory . $imageFilename;
             

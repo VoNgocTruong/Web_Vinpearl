@@ -37,8 +37,8 @@
                 else echo "<tr>";
                 for($i=0; $i<$n-1; $i++){
                     if($i === 2){
-                        if($row[$i] == '1') echo "<td align='center'><img src='../php_mysql/img/woman.png' width='50px' height='50px'></td>";
-                        else echo "<td align='center'><img src='../php_mysql/img/man.png' width='50px' height='50px'></td>";
+                        if($row[$i] == '1') echo "<td align='center'><img src='../hinhBTTH/2/img/img/woman.png' width='50px' height='50px'></td>";
+                        else echo "<td align='center'><img src='../hinhBTTH/2/img/img/man.png' width='50px' height='50px'></td>";
                     }
                     else echo "<td>" . $row[$i] . "</td>";
                 }

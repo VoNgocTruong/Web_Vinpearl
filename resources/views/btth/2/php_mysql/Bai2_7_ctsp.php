@@ -32,7 +32,7 @@
                         "</td>".
                     "</tr>";
                     echo "<tr>";
-                    $imageDirectory = "../php_mysql/img/Hinh_sua/"; // Update the directory path
+                    $imageDirectory = "../hinhBTTH/2/img/Hinh_sua/"; // Update the directory path
                     $imageFilename = $row['Hinh'];
                     $imagePath = $imageDirectory . $imageFilename;                        
                     echo "<td align='center'><img alt='".$row['Hinh']."' src='".$imagePath."' width='100px' height='100px' style='padding: 5px 20px'></td>";
@@ -48,7 +48,7 @@
                     echo "</tr>";
                     echo "<tr>";
                     echo "<td align='center' colspan='2'>".
-                        "<a href='Bai2_7.php'>Quay về</a>".
+                        "<a href='Bai2_7'>Quay về</a>".
                     "</td>";
                     echo "</tr>";
                 }

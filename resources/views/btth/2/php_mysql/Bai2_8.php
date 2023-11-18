@@ -42,7 +42,7 @@
 
         if( mysqli_num_rows ( $result ) !=0){
             while ( $row = mysqli_fetch_array($result)) {
-                $imageDirectory = "../php_mysql/img/Hinh_sua/"; // Update the directory path
+                $imageDirectory = "../hinhBTTH/2/img/Hinh_sua/"; // Update the directory path
                 $imageFilename = $row['Hinh'];
                 $imagePath = $imageDirectory . $imageFilename;
 
@@ -72,15 +72,15 @@
 </table>
 <p align="center">
     <?php?>
-        <a href="Bai2_8.php?p=<?php echo 1;?>"><<</a>
-        <a href="Bai2_8.php?p=<?php if($p>1) echo $p-1; else echo $p;?>"><</a>
+        <a href="Bai2_8?p=<?php echo 1;?>"><<</a>
+        <a href="Bai2_8?p=<?php if($p>1) echo $p-1; else echo $p;?>"><</a>
     <?php?>
     <?php for ($i=1; $i <= $tst; $i++) {?>
-        <a href="Bai2_8.php?p=<?php echo $i;?>"><?php echo $i;?></a>
+        <a href="Bai2_8?p=<?php echo $i;?>"><?php echo $i;?></a>
     <?php }?>
     <?php?>
-        <a href="Bai2_8.php?p=<?php if($p>=1 && $p<$tst) echo $p+1; else echo $tst;?>">></a>
-        <a href="Bai2_8.php?p=<?php echo $tst;?>">>></a>
+        <a href="Bai2_8?p=<?php if($p>=1 && $p<$tst) echo $p+1; else echo $tst;?>">></a>
+        <a href="Bai2_8?p=<?php echo $tst;?>">>></a>
     <?php?>
 </p>
 </body>

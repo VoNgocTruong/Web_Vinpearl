@@ -21,7 +21,7 @@
             $study = implode(", ", $_POST['study']);
             $note = $_POST['note'];
 
-            $url = "BTTH1_Bai8_kq.php?fullname=" . $fullname .
+            $url = "BTTH1_Bai8_kq?fullname=" . $fullname .
                     "&address=" . $address . "&phone=" . $phone . "&gender=" . $gender .
                     "&country=" . $country . "&study=" . $study . "&note=" . $note;
 

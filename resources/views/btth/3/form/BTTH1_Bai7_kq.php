@@ -27,7 +27,7 @@ if (isset($_POST['submit'])){
     }
 
     if(!empty($msg)){
-        header("refresh:2;url=BTTH1_Bai7.php");
+        header("refresh:2;url=BTTH1_Bai7");
     }
 }
 

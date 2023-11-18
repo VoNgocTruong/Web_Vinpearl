@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <form action="BTTH1_Bai6_kq.php" method="post">
+    <form action="BTTH1_Bai6_kq" method="post">
         <table>
             <tr>
                 <td colspan="2"><h2>PHÉP TÍNH TRÊN HAI SỐ</h2></td>

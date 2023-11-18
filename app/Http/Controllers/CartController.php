@@ -113,7 +113,6 @@ class CartController extends Controller
                 $newCTHD->soLuong = $each['quantity'];
                 $gia = $each['quantity'] * $each['gia'];
                 $newCTHD->giaTien = $gia;
-                $newCTHD->status = 'Đã thanh toán';
                 $newCTHD->save();
             }
 
@@ -130,9 +129,6 @@ class CartController extends Controller
 
             return view('cart.success');
         } else {
-            $newCTHD = new Cthd();
-            $newCTHD->status = 'chưa thanh toán';
-            $newCTHD->save();
             return view('cart.failure');
         }
     }

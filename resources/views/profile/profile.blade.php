@@ -46,7 +46,11 @@
                             @if ($member == 'Thành viên')
                                 <span class="bg-amber-400 py-1 px-2 rounded text-white text-sm">
                                     VIP
-                                <span>                                    
+                                <span> 
+                            @else
+                                <span class="bg-blue-900 py-1 px-2 rounded text-white text-sm">
+                                    ADMIN
+                                <span>                                   
                             @endif
                             </span>
                         </li>
@@ -106,6 +110,7 @@
                 </div>
                 <div class="py-5"></div>
                 <!-- Lịch sử mua hàng -->
+                @if (Auth::User()->admin == 0)
                 <div class="bg-white p-3 shadow-sm rounded-sm">
                     <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                         <span clas="text-green-500">
@@ -122,44 +127,83 @@
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="text-center px-6 py-3">
+                                            STT
+                                        </th>
+                                        <th scope="col" class="text-center px-6 py-3">
+                                            Dịch vụ
+                                        </th>
+                                        <th scope="col" class="text-center px-6 py-3">
+                                            Số lượng
+                                        </th>
+                                        <th scope="col" class="text-center px-6 py-3">
+                                            Đơn giá
+                                        </th>
+                                        <th scope="col" class="text-center px-6 py-3">
                                             Ngày giao dịch
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Thành tiền
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $stt = 1;
+                                    @endphp
                                     @foreach ($lichSuGiaoDich as $item)
-                                    <tr class="bg-white border-b">
-                                        <td class="px-6 py-4">
+                                    <tr class="bg-white">
+                                        @foreach ($cthds as $ct)
+                                            @if ($ct->maHD == $item->maHD)
+                                                @foreach ($ves as $ve)
+                                                    @if($ve->maVe == $ct->maVe)
+                                                        @foreach ($dichVus as $dichVu)
+                                                            @if ($dichVu->maDV == $ve->maDV)
+                                                                <td class="text-center px-6 py-4">
+                                                                    {{$stt++}}
+                                                                </td>
+                                                                <td class="px-6 py-4">
+                                                                    {{$dichVu->tenDV}}
+                                                                </td>
+                                                                <td class="text-center px-6 py-4">
+                                                                    {{$ct->soLuong}}
+                                                                </td>
+                                                                <td class="text-center px-6 py-4">
+                                                                    {{$ve->giaTien}}
+                                                                </td>
+                                                                @php
+                                                                    $thanhTien = $ve->giaTien * $ct->soLuong;
+                                                                @endphp
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                        
+                                        
+                                        <td class="px-6 py-4 text-center">
                                             {{$item->ngayThanhToan}}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            @foreach ($cthd as $ct)
-                                                @if ($ct->maHD == $item->maHD)
-                                                    {{$ct->giaTien}} VNĐ
-                                                @endif
-                                            @endforeach
+                                    </tr>
+                                    <tr class="border-b border-gray-400 pb-4">
+                                        <td colspan="2">
+
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <button class="text-blue-500">Chi tiết</button>
+                                        <td class="font-bold text-black text-l">
+                                            THÀNH TIỀN:
+                                        </td>
+                                        <td class="text-center font-bold text-black text-l">
+                                            {{$thanhTien}}
+                                        </td>
+                                        <td>
+
                                         </td>
                                     </tr>
-                                    
                                     @endforeach
-                                    
-                                            
-    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- End of about section -->
 
                 <div class="my-4"></div>

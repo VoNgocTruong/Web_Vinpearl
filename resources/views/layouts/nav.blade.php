@@ -38,6 +38,9 @@
                     <li>
                         <a href="{{ route('info.show')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Thông tin</a>
                     </li>
+                    <li>
+                        <a href="{{ route('thanh_vien') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Bài Tập</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('maVe', 10);
             $table->float('soLuong');
             $table->string('giaTien');
+            $table->string('status')->default('Đang xử lý');
             $table->primary(['maHD', 'maVe']);
             $table->foreign('maVe')->references('maVe')->on('ves');
             $table->foreign('maHD')->references('maHD')->on('hoadons');

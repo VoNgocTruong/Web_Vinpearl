@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Models\Cthd;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\ExerciseController;
 
 
 /*

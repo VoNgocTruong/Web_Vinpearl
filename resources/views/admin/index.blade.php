@@ -6,7 +6,7 @@
     $totalOrder = \App\Models\HoaDon::count();
     $totalVe = \App\Models\Ve::count();
 @endphp
-<div class="container px-6 py-8 mx-auto">
+<div class="container px-6 py-2 mx-auto">
     <div class="container px-6 py-8 mx-auto">
         <h3 class="text-3xl font-medium text-gray-700">THÔNG TIN NHANH</h3>
         <div class="mt-4 flex flex-wrap -mx-6">

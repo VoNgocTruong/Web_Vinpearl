@@ -51,7 +51,7 @@
                 echo '<table align="center" width="700px" border = "1">';
                     while ( $row = mysqli_fetch_array($qr)) {
 
-                        $imageDirectory = "../php_mysql/img/Hinh_sua/"; // Update the directory path
+                        $imageDirectory = "../hinhBTTH/2/img/Hinh_sua/"; // Update the directory path
                         $imageFilename = $row['Hinh'];
                         $imagePath = $imageDirectory . $imageFilename;
     
@@ -81,11 +81,11 @@
         }
         else{
             echo "<p align='center'>"."Vui lòng điền thông tin cần tìm kiếm"."</p>";
-            require('TableBai2_9.php');
+            require('TableBai2_9');
         }
     }
     else{
-        require('TableBai2_9.php');
+        require('TableBai2_9');
     }
 ?>
 </body>

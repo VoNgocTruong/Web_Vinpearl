@@ -20,7 +20,7 @@ if(!empty($_POST['fullname']) && !empty($_POST['address']) && !empty($_POST['pho
         $country=$_POST['country'];
         $study = implode(", ", $_POST['study']);
         $note=$_POST['note'];
-        $url = "../php_and_form/kq_bt8.php?fullname=" . $fullname. 
+        $url = "../php_and_form/kq_bt8?fullname=" . $fullname. 
         "&address=".$address."&phone=".$phone."&gender=".$gender.
         "&country=".$country."&study=".$study."&note=".$note;
         header("Location: " . $url);

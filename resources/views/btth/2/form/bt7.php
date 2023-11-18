@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <form action="kq_bt7.php" method="post">
+    <form action="kq_bt7" method="post">
         <table align="center">
             <tr>
                 <td align="center" colspan="2"><h1>PHÉP TÍNH TRÊN HAI SỐ</h1></td>

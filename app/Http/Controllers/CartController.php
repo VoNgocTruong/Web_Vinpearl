@@ -105,7 +105,6 @@ class CartController extends Controller
             $newHoaDon->SDT = $khach_hang->sdt;
             $newHoaDon->email = $email;
             $newHoaDon->save();
-            
 
             foreach ($cart as $maVe => $each) {
                 $newCTHD = new Cthd();

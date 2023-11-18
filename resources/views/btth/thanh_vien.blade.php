@@ -76,16 +76,20 @@
     </a>
 </div>
 <div class="member-card cursor-pointer">
-    <img src="http://web_vinpearl.test/storage/images/member/4.jpg" alt="Avatar">
-    <div class="member-details">
-        Thành viên 4: Trần Lê Quang Minh - 62131114
-    </div>
+    <a href="{{ route('showLevelTwoDirectories', 4) }}">
+        <img src="http://web_vinpearl.test/storage/images/member/4.jpg" alt="Avatar">
+        <div class="member-details">
+            Thành viên 4: Trần Lê Quang Minh - 62131114
+        </div>
+    </a>
 </div>
 <div class="member-card cursor-pointer">
-    <img src="http://web_vinpearl.test/storage/images/member/5.jpg" alt="Avatar">
-    <div class="member-details">
-        Thành viên 5: Nguyễn Hoàng Duy - 62130337
-    </div>
+    <a href="{{ route('showLevelTwoDirectories', 5) }}">
+        <img src="http://web_vinpearl.test/storage/images/member/5.jpg" alt="Avatar">
+        <div class="member-details">
+            Thành viên 5: Nguyễn Hoàng Duy - 62130337
+        </div>
+    </a>
 </div>
 </body>
 </html>

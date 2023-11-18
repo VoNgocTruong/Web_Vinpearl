@@ -33,7 +33,7 @@ use App\Http\Controllers\InfoController;
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    })->name('index');
+    })->name('adminIndex');
     Route::resource('cthd', CthdController::class);
     Route::resource('khach_hangs', KhachHangController::class);
     Route::resource('loai_nhan_viens', LoaiNhanVienController::class);

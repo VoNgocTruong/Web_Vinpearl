@@ -75,8 +75,8 @@
                             @endif
                         @endif
                     </td>
-                    <td class="p-2">{{ $each['quantity'] }}</td>
-                    <td class="p-2">{{ $each['gia'] }}</td>
+                    <td class="p-2">{{ $each['quantity'] }} </td>
+                    <td class="p-2">{{ number_format($each['gia'], 0, ',', '.')  . ' VNĐ'}}</td>
                 </tr>
             @endforeach
         </table>
@@ -88,12 +88,9 @@
                 foreach ($cart as $maVe => $each) {
                     $totalAmount += $each['quantity'] * $each['gia'];
                 }
-                echo $totalAmount;
+                echo number_format($totalAmount, 0, ',', '.') . ' VNĐ';
             @endphp
-            VNĐ
         </h3>
     </div>
-
 </body>
-
 </html>

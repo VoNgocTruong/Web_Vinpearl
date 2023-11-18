@@ -26,10 +26,10 @@
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-white p-3 border-t-4 border-green-400">
-                    <div class="image overflow-hidden">
+                <div class="bg-white p-3">
+                    <div class="image overflow-hidden  border-b-4 border-green-400">
                         <img class="h-auto w-full mx-auto"
-                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                            src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"
                             alt="">
                     </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{$name}}</h1>
@@ -61,8 +61,7 @@
             </div>
             <!-- Right Side -->
             <div class="w-full md:w-9/12 mx-2 h-64">
-                <!-- Profile tab -->
-                <!-- About Section -->
+                <!-- Hồ sơ -->
                 <div class="bg-white p-3 shadow-sm rounded-sm">
                     <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                         <span clas="text-green-500">
@@ -102,6 +101,62 @@
                                 <div class="px-4 py-2 font-semibold">Điện thoại</div>
                                 <div class="px-4 py-2">{{$user->sdt}}</div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="py-5"></div>
+                <!-- Lịch sử mua hàng -->
+                <div class="bg-white p-3 shadow-sm rounded-sm">
+                    <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                        <span clas="text-green-500">
+                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                        </span>
+                        <span class="tracking-wide">Lịch sử giao dịch</span>
+                    </div>
+                    <div class="text-gray-700">
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Ngày giao dịch
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Thành tiền
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lichSuGiaoDich as $item)
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4">
+                                            {{$item->ngayThanhToan}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            @foreach ($cthd as $ct)
+                                                @if ($ct->maHD == $item->maHD)
+                                                    {{$ct->giaTien}} VNĐ
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <button class="text-blue-500">Chi tiết</button>
+                                        </td>
+                                    </tr>
+                                    
+                                    @endforeach
+                                    
+                                            
+    
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

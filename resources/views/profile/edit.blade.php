@@ -82,9 +82,9 @@
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-3 font-semibold">Tên</div>
                                     @if(Auth::User()->admin == 0)
-                                    <input type="text" name="hoTenKH" required class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->hoTenKH}}">
+                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->hoTenKH}}">
                                     @else
-                                    <input type="text" name="hoTenKH" required class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->name}}">
+                                    <input type="text" name="hoTenKH" class="px-3 w-full h-10 border border-gray-400 rounded-lg" placeholder="{{$user->name}}">
                                     @endif
                                 </div>
                                 @if (Auth::User()->admin == 0)
@@ -94,8 +94,8 @@
                                     </div>
                                     <div class="grid grid-cols-2">
                                         <div class="px-4 py-3 font-semibold">Giới tính</div>
-                                        <select class="px-3 w-full h-10 border border-gray-400 rounded-lg">
-                                            <option value="1" selected>Nam</option>
+                                        <select name="gioiTinh" class="px-3 w-full h-10 border border-gray-400 rounded-lg">
+                                            <option value="1">Nam</option>
                                             <option value="0">Nữ</option>
                                         </select>
                                     </div>
@@ -118,9 +118,13 @@
                             </div>
                         </div>
                         <div class="my-4 flex justify-center items-center">
-                            <input type="submit" name="login" value="Cập nhật thông tin" class="bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
+                            <button type="submit" name='submit' class="bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
+                                Cập nhật thông tin
+                            </button>
                             <div class="mx-3"></div>
-                            <a href="{{route('show-profile')}}" class="text-center bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">Hủy</a>
+                            <button type="submit" name='cancel' data-action="cancel" class="text-center bg-amber-300 border-2 border-amber-300 w-40 h-10 rounded-full hover:bg-white">
+                                Hủy
+                            </button>
                         </div>
                     </form>
 

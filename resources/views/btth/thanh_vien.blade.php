@@ -68,10 +68,12 @@
     </a>
 </div>
 <div class="member-card cursor-pointer">
-    <img src="http://web_vinpearl.test/storage/images/member/3.jpg" alt="Avatar">
-    <div class="member-details">
-        Thành viên 3: Đặng Trúc Ly - 62131061
-    </div>
+    <a href="{{ route('showLevelTwoDirectories', 3) }}">
+        <img src="http://web_vinpearl.test/storage/images/member/3.jpg" alt="Avatar">
+        <div class="member-details">
+            Thành viên 3: Đặng Trúc Ly - 62131061
+        </div>
+    </a>
 </div>
 <div class="member-card cursor-pointer">
     <img src="http://web_vinpearl.test/storage/images/member/4.jpg" alt="Avatar">

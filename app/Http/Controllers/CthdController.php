@@ -94,8 +94,12 @@ class CthdController extends Controller
      * @param  \App\Models\Cthd  $cthd
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cthd $cthd)
+    public function destroy($maHD)
     {
-        //
+        $result = Cthd::query()->where('maHD', $maHD)->delete();
+        if ($result) {
+            return redirect()->route('cthd.index')->with('success', 'Hóa đơn này đã được xóa thành công!');
+        }
+        return redirect()->route('cthd.index')->with('error', 'Không tìm thấy hóa đơn để xoá!');
     }
 }

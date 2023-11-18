@@ -12,7 +12,7 @@
         <div class="rounded-sm border border-stroke bg-white shadow-default p-4">
             <div class="border-b border-stroke py-4 px-6.5">
                 <h2 class="font-semibold text-black" style="font-size: 24px;">
-                    Thêm Nhân Viên
+                    Thêm Vé
                 </h2>
             </div>
             <form action="{{ route('ves.store') }}" method="post" enctype="multipart/form-data">
@@ -49,8 +49,8 @@
                         </label>
                         <div class="relative z-20 bg-transparent">
                             <select name="loaiVe" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary">
-                                <option value="Trẻ em" @if(old('loaiVe') == 'Trẻ em') selected @endif>Trẻ em</option>
-                                <option value="Người lớn" @if(old('loaiVe') == 'Người lớn') selected @endif>Người lớn</option>
+                                <option value="0" @if(old('loaiVe') == 'Trẻ em') selected @endif>Trẻ em</option>
+                                <option value="1" @if(old('loaiVe') == 'Người lớn') selected @endif>Người lớn</option>
                             </select>
                             <span class="absolute top-1/2 right-4 z-30 -translate-y-1/2">
                                 <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

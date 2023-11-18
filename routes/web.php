@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthManagerController;
+use App\Http\Controllers\BTTHController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CthdController;
 use App\Http\Controllers\KhachHangController;
@@ -34,7 +35,7 @@ use App\Http\Controllers\ExerciseController;
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    })->name('index');
+    })->name('adminIndex');
     Route::resource('cthd', CthdController::class);
     Route::resource('khach_hangs', KhachHangController::class);
     Route::resource('loai_nhan_viens', LoaiNhanVienController::class);
@@ -59,11 +60,21 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
 Route::get('/info', [InfoController::class, 'show'])->name('info.show');
 
+// route btth
+Route::get('/thanh_vien', [BTTHController::class, 'index'])->name('thanh_vien');
+Route::get('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
+Route::get('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
+Route::get('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
+Route::post('/btth/{id}', [BTTHController::class, 'showLevelTwoDirectories'])->name('showLevelTwoDirectories');
+Route::post('/btth/{id}/{levelTwoFolder}', [BTTHController::class, 'showLevelThreeFiles'])->name('showLevelThreeFiles');
+Route::post('/btth/{id}/{levelTwoFolder}/{fileName}', [BTTHController::class, 'showFileContent'])->name('showFileContent');
+// chưa làm nút back
+
 //Check login -> true: vào, false: thoát về home
 Route::middleware('checkLogin')->group(function(){
     Route::get('profile', [ProfileUserController::class, 'showProfile'])->name('show-profile');
     Route::get('profile/edit', [ProfileUserController::class, 'edit'])->name('edit-profile');
-    Route::post('profile', [ProfileUserController::class, 'profile'])->name('update-profile');
+    Route::post('profile/edit', [ProfileUserController::class, 'update'])->name('update-profile');
     Route::get('logout', [AuthManagerController::class, 'logout'])->name('logout');
     // cart route
     Route::get('/cart', [CartController::class, 'index'])->name('cartIndex');
@@ -71,8 +82,10 @@ Route::middleware('checkLogin')->group(function(){
     Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('increaseQuantity');
     Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('decreaseQuantity');
     Route::post('/cart/remove', [CartController::class, 'removeItemFromCart'])->name('removeItemFromCart');
+    Route::get('/cart/callback', [CartController::class, 'handlePaymentCallback'])->name('handlePaymentCallback');
 });
 Route::get('register', [AuthManagerController::class, 'showRegistration'])->name('show-registration');
 Route::post('register', [AuthManagerController::class, 'register'])->name('register');
 Route::get('login', [AuthManagerController::class, 'showLogin'])->name('show-login');
 Route::post('login', [AuthManagerController::class, 'login'])->name('login');
+

@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cthd;
 use App\Models\DichVu;
+use App\Models\HoaDon;
+use App\Models\KhachHang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Invoice;
+use Mail;
 
 class CartController extends Controller
 {
@@ -82,5 +89,48 @@ class CartController extends Controller
         }
         return redirect()->route('cartIndex');
     }
-    
+
+    public function handlePaymentCallback(Request $request)
+    {
+        $vnp_ResponseCode = $request->input('vnp_ResponseCode');
+        if ($vnp_ResponseCode === '00') {
+            $email = Session::get('email');
+            $khach_hang = KhachHang::query()->where('email', $email)->first();
+            $generatedCode = HoaDon::generateMaHD();
+            $cart = Session::get('cart');
+            $newHoaDon = new HoaDon();
+            $newHoaDon->maHD = $generatedCode;
+            $newHoaDon->maKH = $khach_hang->maKH;
+            $newHoaDon->ngayThanhToan = Carbon::now();
+            $newHoaDon->SDT = $khach_hang->sdt;
+            $newHoaDon->email = $email;
+            $newHoaDon->save();
+            
+
+            foreach ($cart as $maVe => $each) {
+                $newCTHD = new Cthd();
+                $newCTHD->maVe = $maVe;
+                $newCTHD->maHD = $generatedCode;
+                $newCTHD->soLuong = $each['quantity'];
+                $gia = $each['quantity'] * $each['gia'];
+                $newCTHD->giaTien = $gia;
+                $newCTHD->save();
+            }
+
+            // Send email
+            $email_user = $khach_hang->email;
+            $name_user = $khach_hang->tenKH;
+            Mail::send('emails.checkout', compact('newHoaDon', 'khach_hang', 'newCTHD', 'cart'), function ($email) use ($email_user, $name_user) {
+                $email->subject('Vinpearl Booking Tour - Hóa đơn');
+                $email->to($email_user, $name_user);
+            });
+
+            Session::forget('cart');
+
+
+            return view('cart.success');
+        } else {
+            return view('cart.failure');
+        }
+    }
 }

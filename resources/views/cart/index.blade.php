@@ -65,8 +65,8 @@
                            </button>
                        </form>
                     </div>
-                    <span class="text-center w-1/5 font-semibold text-sm">{{ $each['gia'] }} VNĐ</span>
-                    <span class="text-center w-1/5 font-semibold text-sm">{{ $each['gia'] * $each['quantity'] }} VNĐ</span>
+                    <span class="text-center w-1/5 font-semibold text-sm">{{ number_format($each['gia'], 0, ',', '.')  . ' VNĐ' }}</span>
+                    <span class="text-center w-1/5 font-semibold text-sm">{{ number_format($each['gia'] * $each['quantity'], 0, ',', '.')  . ' VNĐ' }} VNĐ</span>
                     @php $tongTien += $each['gia'] * $each['quantity']  @endphp
                 </div>
             @endforeach
@@ -91,13 +91,13 @@
             <div class="border-t mt-8">
                 <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                     <span>Tổng Tiền</span>
-                    <span>{{ !empty($cart) ? $tongTien : '0'}} VNĐ</span>
-                </div>                
+                    <span>{{ !empty($cart) ? number_format($tongTien, 0, ',', '.') : '0'}} VNĐ</span>
+                </div>
                 <form action="{{ url('/vnpay_payment') }}" method="POST">
                     @csrf
                     <input type="hidden" name="total_vnpay" value="{{!empty($cart) ? $tongTien : '0'}}">
                     <button name="redirect" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" type="submit">Thanh toán</button>
-                </form>                
+                </form>
             </div>
         </div>
     </div>

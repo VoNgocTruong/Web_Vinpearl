@@ -8,7 +8,7 @@
       <div class='flex justify-center items-center'>
         <img class="w-32" src="https://inkythuatso.com/uploads/images/2021/09/vinpearl-logo-inkythuatso-1-13-10-21-19.jpg" alt="Vinpearl logo">
       </div>
-      <p class="text-2xl font-bold">ĐĂNG NHẬP</p>
+      <p class="text-2xl font-bold" >ĐĂNG NHẬP</p>
     </div>
     <div class="mt-5">
       <input type="email" name="email" required class="px-3 w-full h-10 border border-black rounded-lg" placeholder="Email">

@@ -16,7 +16,7 @@
             justify-content: space-around;
             align-items: stretch;
         }
-    
+
         .member-card {
             flex: 0 0 calc(33.33% - 32px); /* Điều chỉnh kích thước chiều rộng của card */
             margin: 16px;
@@ -26,30 +26,30 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-    
+
         .member-card img {
             width: 100%;
             border-radius: 8px;
             margin-bottom: 10px;
         }
-    
+
         .member-details {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-    
+
         .member-tasks {
             font-size: 16px;
         }
-    
+
         /* Media query để điều chỉnh kích thước card trên màn hình nhỏ */
         @media (max-width: 768px) {
             .member-card {
                 flex: 0 0 calc(50% - 32px);
             }
         }
-    </style>  
+    </style>
 </head>
 <body>
     @include('layouts.nav') <!-- Include your navigation bar if you have one -->
